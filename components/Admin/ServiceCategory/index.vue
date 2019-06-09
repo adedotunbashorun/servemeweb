@@ -24,7 +24,7 @@
             <div class="col">
             <div class="card card-small mb-4">
                 <div class="card-header border-bottom">
-                <h6 class="m-0">Question Listing</h6>
+                <h6 class="m-0">Service Category Listing</h6>
                 </div>
                 <div class="card-body p-0 pb-3 text-center">
                 <table id="question-table" class="table mb-0" style="margin:20px;">
