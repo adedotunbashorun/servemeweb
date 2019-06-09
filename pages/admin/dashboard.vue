@@ -4,7 +4,6 @@
 <script>
 import Dashboard from '~/components/Admin/dashboard.vue'
 export default {
-    middleware: 'auth',
     layout: 'admin',
     components:{
         Dashboard
@@ -24,10 +23,10 @@ export default {
     },
     methods:{
         getCount(){
-            this.$store.dispatch('allCounts', this.$store.state.auth.headers)
-            .then((resp) => {
-              this.result = resp.data.result
-            }).catch(err => console.log())
+            // this.$store.dispatch('allCounts', this.$store.state.auth.headers)
+            // .then((resp) => {
+            //   this.result = resp.data.result
+            // }).catch(err => console.log())
         }
     }
 }

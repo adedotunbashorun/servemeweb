@@ -51,18 +51,8 @@
                         <select class="form-control" v-model="user.user_type">
                             <option value="">-- User Type--</option>
                             <option value="admin">Admin</option>
-                            <option value="user">User</option>
-                        </select>
-                        </div>
-                    </div>
-                    <div class="form-group" style="max-width: 30%">
-                        <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                        </div>
-                        <select class="form-control" v-model="user.medium">
-                            <option value="">-- Information Medium --</option>
-                            <option value="Email">Email</option>
-                            <option value="Sms">Sms</option>
+                            <option value="vendor">Vendor</option>
+                            <option value="client">Client</option>
                         </select>
                         </div>
                     </div>
@@ -85,7 +75,11 @@
                     </div>
 
                     <div class="form-group" style="max-width: 30%">
-                        <input type="text" v-model="user.email" class="form-control" id="inputAddress" placeholder="Email" value="">
+                        <input type="text" v-model="user.email" class="form-control" id="inputEmail" placeholder="Email" value="">
+                    </div>
+
+                    <div class="form-group" style="max-width: 30%">
+                        <textarea type="text" v-model="user.address" class="form-control" id="inputAddress" rows="4">Address</textarea>
                     </div>
 
                     <div class="form-group" style="max-width: 30%">
@@ -113,7 +107,7 @@ export default {
             errors: [],
             user: {
                 title:'',
-                medium:'',
+                address:'',
                 user_type:'',
                 first_name:'',
                 last_name:'',
@@ -138,7 +132,7 @@ export default {
                   this.success = resp.data.msg
                   this.user= {
                       title:'',
-                      medium:'',
+                      address:'',
                       user_type:'',
                       first_name:'',
                       last_name:'',

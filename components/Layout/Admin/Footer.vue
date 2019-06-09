@@ -1,7 +1,7 @@
-<template>  
-    <footer class="main-footer d-flex p-2 px-3 bg-white border-top">      
-      <span class="copyright ml-auto my-auto mr-2">Copyright © <span id="year">2019</span>
-        <a href="!#" rel="nofollow">QAPP</a>
+<template>
+    <footer class="main-footer d-flex p-2 px-3 bg-serveme border-top">
+      <span class="copyright ml-auto my-auto mr-2 text-white">Copyright © <span id="year">2019</span>
+        <a href="!#" rel="nofollow">ServeMe</a>
       </span>
     </footer>
 </template>

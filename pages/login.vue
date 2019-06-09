@@ -2,12 +2,11 @@
   <Login />
 </template>
 <script>
-import Login from '~/components/Login.vue'
-export default {
-  middleware: 'guest',
-  layout: 'login',
-  components:{
+import Login from '~/components/FrontEnd/Login.vue'
+  export default {
+    layout: 'login',
+    components:{
       Login
+    }
   }
-}
 </script>

@@ -1,15 +1,15 @@
 <template>
-    <div class="main-navbar sticky-top bg-white">
+    <div class="main-navbar sticky-top bg-serveme">
             <!-- Main Navbar -->
         <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
             <form action="#" class="main-navbar__search w-100 d-none d-md-flex d-lg-flex">
             <div class="input-group input-group-seamless ml-3">
                 <div class="input-group-prepend">
-                <div class="input-group-text">
+                <div class="input-group-text bg-serveme">
                     <i class="fas fa-search"></i>
                 </div>
                 </div>
-                <input class="navbar-search form-control" type="text" placeholder="Search for something..." aria-label="Search"> </div>
+                <input class="navbar-search form-control bg-serveme" type="text" placeholder="Search for something..." aria-label="Search"> </div>
             </form>
             <ul class="navbar-nav border-left flex-row ">
             <li class="nav-item dropdown">
@@ -33,7 +33,7 @@
 </template>
 <script>
 const Cookie = process.client ? require('js-cookie') : undefined
-export default { 
+export default {
     props: ['user'],
     methods:{
         logoutUser() {

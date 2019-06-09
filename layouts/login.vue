@@ -5,48 +5,38 @@
 </template>
 <script>
 export default {
+    middleware: 'guest',
     head () {
         return {
             bodyAttrs: {
-                id: ''
+                id: '',
+                style: "background-color: #666666;"
             },
             link: [
-                { href:"/assets/css/demo1/pages/general/login/login-4.css",rel:"stylesheet",type:"text/css",}
+                { href:"vendor/bootstrap/css/bootstrap.min.css" ,rel:"stylesheet",type:"text/css"},
+                { href:"vendor/animate/animate.css" ,rel:"stylesheet",type:"text/css"},
+                { href:"vendor/css-hamburgers/hamburgers.min.css" ,rel:"stylesheet",type:"text/css"},
+                { href:"vendor/animsition/css/animsition.min.css" ,rel:"stylesheet",type:"text/css"},
+                { href:"vendor/select2/select2.min.css" ,rel:"stylesheet",type:"text/css"},
+                { href:"vendor/daterangepicker/daterangepicker.css" ,rel:"stylesheet",type:"text/css"},
+                { href:"css/util.css" ,rel:"stylesheet",type:"text/css"},
+                { href:"css/main.css" ,rel:"stylesheet",type:"text/css"}
             ],
             script: [
-                { src: '/assets/js/demo1/pages/login/login-general.js' },
+                { src: 'vendor/jquery/jquery-3.2.1.min.js' },
+                { src: 'vendor/animsition/js/animsition.min.js' },
+                { src: 'vendor/bootstrap/js/popper.js' },
+                { src: 'vendor/bootstrap/js/bootstrap.min.js' },
+                { src: 'vendor/select2/select2.min.js' },
+                { src: 'vendor/daterangepicker/moment.min.js' },
+                { src: 'vendor/daterangepicker/daterangepicker.js' },
+                { src: 'vendor/countdowntime/countdowntime.js' },
+                { src: 'js/main.js' }
 
             ]
         }
     },
     mounted(){
-      WebFont.load({
-				google: {
-					"families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"]
-				},
-				active: function() {
-					sessionStorage.fonts = true;
-				}
-      })
-
-      var KTAppOptions = {
-				"colors": {
-					"state": {
-						"brand": "#5d78ff",
-						"dark": "#282a3c",
-						"light": "#ffffff",
-						"primary": "#5867dd",
-						"success": "#34bfa3",
-						"info": "#36a3f7",
-						"warning": "#ffb822",
-						"danger": "#fd3995"
-					},
-					"base": {
-						"label": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
-						"shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
-					}
-				}
-			}
     }
 }
 </script>

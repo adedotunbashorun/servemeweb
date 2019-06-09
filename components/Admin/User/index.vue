@@ -1,6 +1,6 @@
 <template>
     <div class="main-content-container container-fluid px-4">
-            
+
         <!-- Page Header -->
         <div class="page-header row no-gutters py-4">
             <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
@@ -17,7 +17,7 @@
             <button type="button" class="mb-2 btn btn-outline-primary mr-2">Create User</button></nuxt-link>
         </div>
         </div>
-        <!-- / Button -->            
+        <!-- / Button -->
 
         <!-- Default Light Table -->
         <div class="row">
@@ -35,7 +35,7 @@
                         <th scope="col" class="border-0">Email</th>
                         <th scope="col" class="border-0">Phone Number</th>
                         <th scope="col" class="border-0">User Type</th>
-                        <th scope="col" class="border-0">Is Scheduled</th>
+                        <th scope="col" class="border-0">Is Active</th>
                         <th scope="col" class="border-0"> Action </th>
                     </tr>
                     </thead>
@@ -44,10 +44,10 @@
                         <td>{{ index +1 }}</td>
                         <td>{{ user.first_name + ' ' + user.last_name}}</td>
                         <td>{{ user.email }}</td>
-                        <td>{{ user.phone }}</td>                        
+                        <td>{{ user.phone }}</td>
                         <td>{{ user.user_type }}</td>
-                        <td style="color: #3ED60E">{{ user.is_scheduled }}</td>
-                        <td> 
+                        <td style="color: #3ED60E">{{ user.is_active }}</td>
+                        <td>
                         <!-- <ul class="navbar-nav border-left flex-row ">
                             <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">

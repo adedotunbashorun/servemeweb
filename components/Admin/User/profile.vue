@@ -49,12 +49,7 @@
                                 <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                 </div>
-                                <select class="form-control" v-model="user_details.medium">
-                                    <option value="">-- Information Medium --</option>
-                                    <option value="Email">Email</option>
-                                    <option value="Sms">Sms</option>
-                                </select>
-                                </div>
+                                <input type="text" class="form-control" v-model="user_details.user_type" placeholder="First Name" aria-label="Full name" aria-describedby="basic-addon1" readonly> </div>
                             </div>
                             <div class="form-group" style="max-width: 100%">
                                 <div class="input-group mb-3">
@@ -70,11 +65,15 @@
                                 <input type="text" class="form-control" v-model="user_details.last_name" placeholder="Last Name" aria-label="Full name" aria-describedby="basic-addon1"> </div>
                             </div>
                             <div class="form-group" style="max-width: 100%">
-                                <input type="text" v-model="user_details.phone" class="form-control" placeholder="Phone Number" value="">
+                                <input type="text" v-model="user_details.phone" pattern="[0-9]{6,14}[0-9]$" class="form-control" placeholder="Phone Number" value="">
+                                <span class="note">Format: 2349034268873</span>
                             </div>
 
                             <div class="form-group" style="max-width: 100%">
                                 <input type="text" v-model="user_details.email" class="form-control" id="inputAddress" placeholder="Email" value="">
+                            </div>
+                            <div class="form-group" style="max-width: 100%">
+                                <textarea type="text" v-model="user_details.address" class="form-control" id="inputAddress" rows="4">Address</textarea>
                             </div>
                             <div class="form-group" style="max-width: 100%">
                                 <button type="submit" class="mb-2 btn btn-primary mr-2">Update User</button>
@@ -113,44 +112,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-12" v-if="schedules.length > 0">
-                <div class="card card-small mb-4">
-                    <div class="card-header border-bottom">
-                    <h6 class="m-0">Schedule Log</h6>
-                    </div>
-                    <div class="card-body p-0 pb-3 text-center">
-                        <table id="schedule-table" class="table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">S/N</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col"> Question</th>
-                                    <th scope="col">Has Replied</th>
-                                    <th scope="col">Scheduled Date</th>
-                                    <th scope="col">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="(schedule,index) in schedules" :key="index">
-                                <th scope="row">
-                                    {{ index+1 }}
-                                </th>
-                                <td>
-                                    {{ schedule.category_id.name }}
-                                </td>
-                                <td>
-                                    {{ schedule.question_id.subject }}
-                                </td>
-                                <td style="color: #3ED60E">{{ schedule.is_reply }}</td>
-                                <td><Adedotun :value="schedule.scheduled_date" fn="date" /></td>
-                                <td>{{ (new Date() > new Date(schedule.scheduled_date)) ? 'sent' : 'not sent'}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -163,7 +124,8 @@ export default {
         errors: [],
         user_details: {
             title:'',
-            medium:'',
+            user_type: '',
+            address:'',
             first_name:'',
             last_name:'',
             email:'',
@@ -181,10 +143,8 @@ export default {
   mounted(){
         this.getUser()
         this.activityLogs()
-        this.userSchedule()
         setTimeout(() => {
             $('#activity-table').DataTable({})
-            $('#schedule-table').DataTable({})
         },2000)
 
   },
@@ -201,12 +161,7 @@ export default {
             this.activities = resp.data.activities
         }).catch(err => console.log())
     },
-    userSchedule(){
-        this.$store.dispatch('userSchedules', [this.$nuxt._route.params.id,this.$store.state.auth.headers])
-        .then((resp) => {
-            this.schedules = resp.data.schedules
-        }).catch(err => console.log())
-    },
+
     update(){
         let component = this;
         this.$store.dispatch('updateUser', [component.user_details,this.$store.state.auth.headers])
