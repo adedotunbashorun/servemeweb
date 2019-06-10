@@ -3,7 +3,7 @@ import {config} from '../../config'
 
 const allQuestions = (header) => {
     return new Promise((resolve, reject) => {
-        axios.get(config.apiUrl + '/api/questions', { headers: { Authorization: header } })
+        axios.get(config.apiUrl + '/api/subcategory', { headers: { Authorization: header } })
             .then(resp => {
                 resolve(resp)
             })
@@ -15,7 +15,7 @@ const allQuestions = (header) => {
 
 const questionById = (data, header) => {
     return new Promise((resolve, reject) => {
-        axios.get(config.apiUrl + '/api/question/'+data, {headers:{ Authorization: header}})
+        axios.get(config.apiUrl + '/api/subcategory/'+data, {headers:{ Authorization: header}})
             .then(resp => {
                 resolve(resp)
             })
@@ -27,7 +27,7 @@ const questionById = (data, header) => {
 
 const addQuestion = (data, header) => {
     return new Promise((resolve, reject) => {
-        axios.post(config.apiUrl + '/api/question', data, { headers: { Authorization: header } })
+        axios.post(config.apiUrl + '/api/subcategory', data, { headers: { Authorization: header } })
             .then(resp => {
                 resolve(resp)
             })
@@ -39,7 +39,7 @@ const addQuestion = (data, header) => {
 
 const updateQuestion = (data, header) => {
     return new Promise((resolve, reject) => {
-        axios.patch(config.apiUrl + '/api/question/' + data._id, data, { headers: { Authorization: header } })
+        axios.patch(config.apiUrl + '/api/subcategory/' + data._id, data, { headers: { Authorization: header } })
             .then(resp => {
                 resolve(resp)
             })
@@ -51,7 +51,7 @@ const updateQuestion = (data, header) => {
 
 const deleteQuestion = (data, header) => {
     return new Promise((resolve, reject) => {
-        axios.delete(config.apiUrl + '/api/question/' + data, { headers: { Authorization: header } })
+        axios.delete(config.apiUrl + '/api/subcategory/' + data, { headers: { Authorization: header } })
             .then(resp => {
                 resolve(resp)
             })

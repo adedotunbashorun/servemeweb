@@ -31,6 +31,7 @@
                     <thead class="bg-light">
                     <tr>
                         <th scope="col" class="border-0">#</th>
+                        <th scope="col" class="border-0">Image</th>
                         <th scope="col" class="border-0">Name</th>
                         <th scope="col" class="border-0">Description</th>
                         <th scope="col" class="border-0">Action </th>
@@ -39,6 +40,7 @@
                     <tbody>
                         <tr v-for="(category, index) in categories" :key="index">
                             <td>{{ index + 1}}</td>
+                            <td><img :src="apiUrl+'/'+category.image_url" style="width:50px;height:50px" /></td>
                             <td>{{ category.name}}</td>
                             <td>{{category.description}}</td>
                             <td>
@@ -69,9 +71,17 @@
     </div>
 </template>
 <script>
+import {config} from '../../../config'
 export default {
     props:['categories'],
+    data(){
+        return {
+            apiUrl : ''
+        }
+    },
     mounted(){
+      console.log(config.apiUrl)
+        this.apiUrl = config.apiUrl
         setTimeout(() => {
             $('#category-table').DataTable({})
         },2000)

@@ -36,7 +36,7 @@
                         </div>
                         <select class="form-control" v-model="question.category_id">
                             <option value="">-- Select Service --</option>
-                            <option v-for="category in categories" :key="category._id">{{ category.name}}</option>
+                            <option v-for="category in categories" :value="category._id">{{ category.name}}</option>
                         </select>
                         </div>
                     </div>
@@ -131,8 +131,8 @@ export default {
         this.errors.push('Category required.');
         return false;
         }
-        if (!this.question.subject) {
-        this.errors.push('Subject required.');
+        if (!this.question.name) {
+        this.errors.push('Name required.');
         return false;
         }
         if (!this.question.description) {

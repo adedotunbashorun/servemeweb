@@ -37,7 +37,7 @@
                         </div>
                         <select class="form-control" v-model="question.category_id">
                             <option value="">-- Select Category --</option>
-                            <option v-for="category in categories" :key="category._id">{{ category.name}}</option>
+                            <option v-for="category in categories" :value="category._id">{{ category.name}}</option>
                         </select>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                         <div class="input-group mb-3">
                         <div class="input-group-prepend">
                         </div>
-                        <input type="text" class="form-control" v-model="question.subject" placeholder="Subject" aria-label="Subject" aria-describedby="basic-addon1"> </div>
+                        <input type="text" class="form-control" v-model="question.name" placeholder="Name" aria-label="Subject" aria-describedby="basic-addon1"> </div>
                     </div>
 
                     <div class="form-group" style="max-width: 30%">
@@ -86,7 +86,7 @@ export default {
             errors: [],
             question: {
                 category_id: '',
-                subject:'',
+                name:'',
                 description:'',
                 image:''
             },
@@ -107,7 +107,7 @@ export default {
                 this.success = resp.data.msg
                 this.question= {
                     category_id: '',
-                    subject:'',
+                    name:'',
                     description:'',
                     image: ''
                 }
@@ -120,7 +120,7 @@ export default {
             })
         },
         checkForm: function (e) {
-            if (this.question.category_id && this.question.subject && this.question.description) {
+            if (this.question.category_id && this.question.name && this.question.description) {
             this.register();
             return true;
             }
@@ -130,7 +130,7 @@ export default {
             this.errors.push('Category required.');
             return false;
             }
-            if (!this.question.subject) {
+            if (!this.question.name) {
             this.errors.push('Name required.');
             return false;
             }
