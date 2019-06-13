@@ -1,5 +1,5 @@
 <template>
-    <Question :questions="questions"/>
+    <Question :service_categories="service_categories" :page="page"/>
 </template>
 <script>
 import Question from '~/components/Admin/ServiceCategory/index.vue'
@@ -8,7 +8,8 @@ export default {
     data(){
         return {
             errors: [],
-            questions: []
+            service_categories: [],
+            page: "Service Categories"
         }
     },
     components:{
@@ -20,7 +21,7 @@ export default {
     methods:{
         allQuestions(){
             this.$store.dispatch('allQuestions', this.$store.state.auth.headers)
-            .then((resp) => { this.questions = resp.data.questions
+            .then((resp) => { this.service_categories = resp.data.subcategories
             }).catch(err => console.log())
         }
     }

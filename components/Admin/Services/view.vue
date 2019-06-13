@@ -1,27 +1,16 @@
 <template>
-    <div class="main-content-container container-fluid px-4">
-        <!-- Page Header -->
-        <div class="page-header row no-gutters py-4">
-            <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-            <h3 class="page-title">Edit Service</h3>
-            <span class="text-uppercase page-subtitle">Fill form to edit a Service</span>
-            </div>
-        </div>
-        <!-- End Page Header -->
-
-        <!-- Button -->
-        <div class="row">
-            <div class="col">
-                <nuxt-link to="/admin/service">
-                <button type="button" class="mb-2 btn btn-outline-primary mr-2">Go back</button></nuxt-link>
-            </div>
-        </div>
-        <!-- / Button -->
-
-        <!-- Form -->
-        <div class="row">
-            <div class="card card-small mb-4 col-md-4" >
-                <form @submit.prevent="checkForm">
+<div>
+    <h3 class="page-title">{{ page }}<nuxt-link to="/admin/service" class="pull pull-right btn btn-outline-primary"><i class="fa fa-arrow-left"></i> Go Back</nuxt-link></h3>
+    <div class="row">
+      <div class="col-md-6">
+        <!-- PANEL HEADLINE -->
+        <div class="panel panel-headline">
+          <div class="panel-heading">
+              <h3 class="panel-title">Edit Service </h3>
+              <span class="text-uppercase panel-subtitle">Fill form to update service</span>
+          </div>
+          <div class="panel-body">
+            <form @submit.prevent="checkForm">
                     <p v-if="errors.length">
                         <b>Please correct the following error(s):</b>
                         <ul>
@@ -31,26 +20,16 @@
                     <div class="alert alert-success" v-if="success"><button type="button" class="pi-close" data-dismiss="alert"><i class="material-icons" data-dismiss="alert">close</i></button>{{ success }}</div>
                     <div class="alert alert-danger" v-if="error"><button type="button" class="pi-close" data-dismiss="alert"><i class="material-icons" data-dismiss="alert">close</i></button>{{ error }}</div>
 
-                    <div class="form-group" style="max-width: 30%">
-                        <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                        </div>
-                        <input type="file" @change="onFileChange"> </div>
+                    <div class="form-group">
+                        <input type="file" class="form-control" @change="onFileChange">
                     </div>
-                    <div class="form-group" style="max-width: 30%">
-                        <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                        </div>
-                        <input type="text" class="form-control" v-model="data.name" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1"> </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" v-model="data.name" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">
                     </div>
 
-                    <div class="form-group" style="max-width: 30%">
-                        <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                        </div>
+                    <div class="form-group">
                         <textarea type="text" class="form-control" v-model="data.description" rows="4" aria-describedby="basic-addon1">
                         </textarea>
-                        </div>
                     </div>
                     <div class="row">
                         <div class="col">
@@ -58,47 +37,55 @@
                         </div>
                     </div>
                 </form>
-            </div>
-            <div class="col-md-8">
-                <div class="card card-small mb-4">
-                    <div class="card-header border-bottom">
-                    <h6 class="m-0">Service Category</h6>
-                    </div>
-                    <div class="card-body p-0 pb-3 text-center">
-                        <table id="question-table" class="table mb-0">
-                            <thead class="thead-dark">
-                                <tr>
-                                <th scope="col">S/N</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Description</th>
-                                <th scope="col"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="(q,index) in service_categories" :key="index">
-                                <th scope="row">
-                                    {{ index+1 }}
-                                </th>
-                                <td>
-                                    {{ q.subject }}
-                                </td>
-                                <td>
-                                    {{ q.description }}
-                                </td>
-                                <td><Adedotun :value="q.createdAt" fn="humandate" /></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+        <!-- END PANEL HEADLINE -->
+      </div>
+      <div class="col-md-6">
+        <div class="panel panel-headline">
+          <div class="panel-heading">
+              <h3 class="panel-title">List Service Category</h3>
+          </div>
+          <div class="panel-body">
+            <table id="question-table" class="table">
+              <thead class="bg-light">
+                <tr>
+                    <th>#</th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Action </th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr v-for="(question, index) in service_categories" :key="index">
+                      <td>{{ index + 1}}</td>
+                      <td><img :src="apiUrl+'/'+question.image_url" style="width:30px;height:30px" /></td>
+                      <td>{{ question.name}}</td>
+                      <td>{{question.description}}</td>
+                      <td>
+                        <nuxt-link class="" :to="{name: 'admin-service_category-id', params:{id : question._id}}" title="edit / view">
+                        <i class="material-icons">edit</i></nuxt-link>
+                        <a class="text-danger" style="cursor:pointer;" @click="deleteQuestion(question._id)" title="delete">
+                        <i class="material-icons text-danger">delete</i></a>
+                      </td>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
+
+
+</div>
 
 </template>
 <script>
+import {config} from '../../../config'
 import Adedotun from '../../Extra/adedotun'
 export default {
+  props:['page'],
     data(){
       return {
         errors: [],
@@ -109,15 +96,16 @@ export default {
         },
         service_categories:[],
         success: '',
-        error:''
+        error:'',
+        apiUrl : ''
       }
   },
   mounted(){
-        this.getCategory()
-        this.getQuestions()
-        setTimeout(() => {
-            $('#question-table').DataTable({})
-        },2000)
+    this.apiUrl = config.apiUrl
+    this.getCategory()
+    setTimeout(() => {
+        $('#question-table').DataTable({})
+    },2000)
   },
   components:{
       Adedotun
@@ -127,14 +115,10 @@ export default {
         this.$store.dispatch('categoryById', [this.$nuxt._route.params.id,this.$store.state.auth.headers])
         .then((resp) => {
              this.data = resp.data.category
+            this.service_categories = resp.data.service_categories
         }).catch(err => console.log())
     },
-    getQuestions(){
-        this.$store.dispatch('allCategoryQuestions', [this.$nuxt._route.params.id,this.$store.state.auth.headers])
-        .then((resp) => {
-            this.service_categories = resp.data.questions
-        }).catch(err => console.log())
-    },
+
     update(){
         let component = this;
         this.$store.dispatch('updateCategory', [component.data,this.$store.state.auth.headers])
@@ -149,7 +133,8 @@ export default {
           }
         })
         .catch(err => {
-            this.error = 'please verify that the data entered are correct.'
+            this.error = ''
+            this.error = err.message
             console.log(err)
         })
     },

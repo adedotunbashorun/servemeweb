@@ -1,5 +1,5 @@
 <template>
-    <Dashboard :user="user" :result="result" />
+    <Dashboard :user="user" :result="result" :page="page"/>
 </template>
 <script>
 import Dashboard from '~/components/Admin/dashboard.vue'
@@ -10,10 +10,12 @@ export default {
     },
     data(){
       return{
-        result:{}
+        result:{},
+        page: ''
       }
     },
     mounted(){
+      this.page = "Dashboard"
       this.getCount()
     },
     computed:{

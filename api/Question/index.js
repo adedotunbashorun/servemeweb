@@ -3,7 +3,7 @@ import {config} from '../../config'
 
 const allQuestions = (header) => {
     return new Promise((resolve, reject) => {
-        axios.get(config.apiUrl + '/api/subcategory', { headers: { Authorization: header } })
+        axios.get(config.apiUrl + '/api/subcategories', { headers: { Authorization: header } })
             .then(resp => {
                 resolve(resp)
             })

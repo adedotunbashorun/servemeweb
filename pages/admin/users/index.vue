@@ -1,17 +1,22 @@
 <template>
-    <Users :users="users"/>
+    <Users :users="users" :page="page"/>
 </template>
 <script>
 import Users from '~/components/Admin/User/index.vue'
 export default {
     layout: 'admin',
+    data(){
+      return{
+        page: 'Users List'
+      }
+    },
     components:{
         Users
     },
     mounted(){
         this.getUsers()
     },
-    computed:{   
+    computed:{
         users(){
             return this.$store.state.auth.users
         }

@@ -14,8 +14,6 @@ export default {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
-      { href: 'fonts/font-awesome-4.7.0/css/font-awesome.min.css', rel: "stylesheet"},
-      { href: 'fonts/Linearicons-Free-v1.0.0/icon-font.min.css', rel: "stylesheet"},
       { rel: 'shortcut icon', href: '/images/servme-logo-dark.png' }
     ],
     script: [

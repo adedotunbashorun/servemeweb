@@ -1,10 +1,15 @@
 <template>
-    <QuestionView :categories="categories"/>
+    <QuestionView :categories="categories" :page="page" />
 </template>
 <script>
 import QuestionView from '~/components/Admin/ServiceCategory/view.vue'
 export default {
     layout: 'admin',
+    data(){
+        return {
+          page: "Edit / View Service Category"
+        }
+    },
     components:{
         QuestionView
     },

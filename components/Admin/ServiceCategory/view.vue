@@ -1,92 +1,69 @@
 <template>
-    <div class="main-content-container container-fluid px-4">
-        <!-- Page Header -->
-        <div class="page-header row no-gutters py-4">
-            <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-            <h3 class="page-title">Edit Service Category</h3>
-            <span class="text-uppercase page-subtitle">Fill form to edit a service category</span>
-            </div>
-        </div>
-        <!-- End Page Header -->
-
-        <!-- Button -->
-        <div class="row">
-            <div class="col">
-                <nuxt-link to="/admin/service_category">
-                <button type="button" class="mb-2 btn btn-outline-primary mr-2">Go back</button></nuxt-link>
-            </div>
-        </div>
-        <!-- / Button -->
-
-        <!-- Form -->
-        <div class="row">
-            <div class="card card-small mb-4 col-md-4" >
-                <form @submit.prevent="checkForm">
+    <div>
+    <h3 class="page-title">{{ page }}<nuxt-link to="/admin/service_category" class="pull pull-right btn btn-outline-primary"><i class="fa fa-arrow-left"></i> Go Back</nuxt-link></h3>
+    <div class="row">
+      <div class="col-md-6">
+        <!-- PANEL HEADLINE -->
+        <div class="panel panel-headline">
+          <div class="panel-heading">
+              <h3 class="panel-title">{{ page }}  </h3>
+              <span class="text-uppercase panel-subtitle">Fill form to update service category</span>
+          </div>
+          <div class="panel-body">
+               <form @submit.prevent="checkForm">
                     <p v-if="errors.length">
                         <b>Please correct the following error(s):</b>
                         <ul>
-                        <li class="text-danger" v-for="error in errors" :key="error">{{ error }}</li>
+                          <li class="text-danger" v-for="error in errors" :key="error">{{ error }}</li>
                         </ul>
                     </p>
                     <div class="alert alert-success" v-if="success"><button type="button" class="pi-close" data-dismiss="alert"><i class="material-icons" data-dismiss="alert">close</i></button>{{ success }}</div>
                     <div class="alert alert-danger" v-if="error"><button type="button" class="pi-close" data-dismiss="alert"><i class="material-icons" data-dismiss="alert">close</i></button>{{ error }}</div>
-                    <div class="form-group" style="max-width: 30%">
-                        <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                        </div>
+                    <div class="form-group">
                         <select class="form-control" v-model="question.category_id">
                             <option value="">-- Select Service --</option>
                             <option v-for="category in categories" :value="category._id">{{ category.name}}</option>
                         </select>
-                        </div>
                     </div>
-                    <div class="form-group" style="max-width: 30%">
-                        <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                        </div>
-                        <input type="file" @change="onFileChange"> </div>
+                    <div class="form-group">
+                        <input type="file" class="form-control" @change="onFileChange">
                     </div>
-                    <div class="form-group" style="max-width: 30%">
-                        <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                        </div>
-                        <input type="text" class="form-control" v-model="question.name" placeholder="Subject" aria-label="Subject" aria-describedby="basic-addon1"> </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" v-model="question.name" placeholder="Subject" aria-label="Subject" aria-describedby="basic-addon1">
                     </div>
 
-                    <div class="form-group" style="max-width: 30%">
-                        <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                        </div>
-                        <textarea type="text" class="form-control" v-model="question.description" rows="4" aria-describedby="basic-addon1">
+                    <div class="form-group">
+                        <textarea type="text" class="form-control" placeholder="Description" v-model="question.description" rows="4" aria-describedby="basic-addon1">
                         </textarea>
-                        </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                        <button type="submit" class="mb-2 btn btn-primary mr-2">Update question</button>
+                        <button type="submit" class="mb-2 btn btn-primary mr-2">Update Service Category</button>
                         </div>
                     </div>
                 </form>
-            </div>
-            <div class="col-md-8">
-
-            </div>
+          </div>
         </div>
+        <!-- END PANEL HEADLINE -->
+      </div>
     </div>
+
+
+</div>
 
 </template>
 <script>
 import Adedotun from '../../Extra/adedotun'
 export default {
-    props:['categories'],
+    props:['categories','page'],
     data(){
       return {
         errors: [],
         question: {
-            name:'',
-            description:'',
-            category_id:'',
-            image: ''
+          name:'',
+          description:'',
+          category_id: '',
+          image: ''
         },
         success: '',
         error: ''
@@ -102,7 +79,7 @@ export default {
     getQuestion(){
         this.$store.dispatch('questionById', [this.$nuxt._route.params.id,this.$store.state.auth.headers])
         .then((resp) => {
-            return this.question = resp.data.question
+            return this.question = resp.data.subcategory
         }).catch(err => console.log())
     },
     update(){

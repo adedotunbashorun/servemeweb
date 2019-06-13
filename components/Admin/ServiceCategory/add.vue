@@ -1,90 +1,64 @@
 <template>
-    <div class="main-content-container container-fluid px-4">
-        <!-- Page Header -->
-        <div class="page-header row no-gutters py-4">
-            <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-            <h3 class="page-title">Add ServiceCategory</h3>
-            <span class="text-uppercase page-subtitle">Fill form to create new ServiceCategory</span>
-            </div>
+<div>
+    <h3 class="page-title">{{ page }}</h3>
+    <div class="row">
+      <div class="col-md-8">
+        <!-- PANEL HEADLINE -->
+        <div class="panel panel-headline">
+          <div class="panel-heading">
+              <h3 class="panel-title">Add Service Category <nuxt-link to="/admin/service_category" class="pull pull-right btn btn-outline-primary"><i class="fa fa-arrow-left"></i> Go Back</nuxt-link></h3>
+              <span class="text-uppercase panel-subtitle">Fill form to create new service category </span>
+          </div>
+          <div class="panel-body">
+            <form @submit.prevent="checkForm">
+                <p v-if="errors.length">
+                    <b>Please correct the following error(s):</b>
+                    <ul>
+                    <li class="text-danger" v-for="error in errors" :key="error">{{ error }}</li>
+                    </ul>
+                </p>
+                <div class="alert alert-success" v-if="success"><button type="button" class="pi-close" data-dismiss="alert"><i class="material-icons" data-dismiss="alert">close</i></button>{{ success }}</div>
+                <div class="alert alert-danger" v-if="error"><button type="button" class="pi-close" data-dismiss="alert"><i class="material-icons" data-dismiss="alert">close</i></button>{{ error }}</div>
+                <div class="form-group">
+                    <select class="form-control" v-model="service_cat.category_id">
+                        <option value="">-- Select Category --</option>
+                        <option v-for="category in categories" :value="category._id">{{ category.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="file" class="form-control" @change="onFileChange">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" v-model="service_cat.name" placeholder="Name" aria-label="Subject" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="form-group">
+                    <textarea type="text" class="form-control" v-model="service_cat.description" placeholder="Description" rows="4" aria-describedby="basic-addon1">
+                    </textarea>
+                </div>
+                <div class="row">
+                    <div class="col">
+                    <button type="submit" class="pull pull-right btn btn-primary">Add Service Category</button>
+                    </div>
+                </div>
+              </form>
+          </div>
         </div>
-        <!-- End Page Header -->
-
-        <!-- Button -->
-        <div class="row">
-        <div class="col">
-            <nuxt-link to="/admin/service_category">
-            <button type="button" class="mb-2 btn btn-outline-primary mr-2">Go back</button></nuxt-link>
-        </div>
-        </div>
-        <!-- / Button -->
-
-        <!-- Form -->
-        <div class="row">
-            <div class="col">
-                <strong class="text-muted d-block mb-2"></strong>
-                <form @submit.prevent="checkForm">
-                    <p v-if="errors.length">
-                        <b>Please correct the following error(s):</b>
-                        <ul>
-                        <li class="text-danger" v-for="error in errors" :key="error">{{ error }}</li>
-                        </ul>
-                    </p>
-                    <div class="alert alert-success" v-if="success"><button type="button" class="pi-close" data-dismiss="alert"><i class="material-icons" data-dismiss="alert">close</i></button>{{ success }}</div>
-                    <div class="alert alert-danger" v-if="error"><button type="button" class="pi-close" data-dismiss="alert"><i class="material-icons" data-dismiss="alert">close</i></button>{{ error }}</div>
-                    <div class="form-group" style="max-width: 30%">
-                        <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                        </div>
-                        <select class="form-control" v-model="question.category_id">
-                            <option value="">-- Select Category --</option>
-                            <option v-for="category in categories" :value="category._id">{{ category.name}}</option>
-                        </select>
-                        </div>
-                    </div>
-                    <div class="form-group" style="max-width: 30%">
-                        <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                        </div>
-                        <input type="file" @change="onFileChange"> </div>
-                    </div>
-                    <div class="form-group" style="max-width: 30%">
-                        <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                        </div>
-                        <input type="text" class="form-control" v-model="question.name" placeholder="Name" aria-label="Subject" aria-describedby="basic-addon1"> </div>
-                    </div>
-
-                    <div class="form-group" style="max-width: 30%">
-                        <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                        </div>
-                        <textarea type="text" class="form-control" v-model="question.description" rows="4" aria-describedby="basic-addon1">
-                        </textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                        <button type="submit" class="mb-2 btn btn-primary mr-2">Add Question</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- End Form -->
-
-        <!-- Button -->
-
-        <!-- / Button -->
+        <!-- END PANEL HEADLINE -->
+      </div>
     </div>
+
+
+</div>
 
 </template>
 <script>
 export default {
-    props:['categories'],
+    props:['categories','page'],
     data(){
         return {
             errors: [],
-            question: {
+            service_cat: {
                 category_id: '',
                 name:'',
                 description:'',
@@ -97,7 +71,7 @@ export default {
     methods: {
         register(){
             let component = this;
-            this.$store.dispatch('addQuestion', [component.question,this.$store.state.auth.headers])
+            this.$store.dispatch('addQuestion', [component.service_cat,this.$store.state.auth.headers])
             .then((resp) => {
               this.error = ''
               this.success = ''
@@ -105,36 +79,41 @@ export default {
                 this.error = resp.data.msg
               }else{
                 this.success = resp.data.msg
-                this.question= {
+                this.service_cat= {
                     category_id: '',
                     name:'',
                     description:'',
                     image: ''
                 }
+                this.error = ''
                 this.errors = []
               }
             })
             .catch(err => {
-                this.error = 'please verify that the data entered are correct.'
+                this.error = err.message
                 console.log(err)
             })
         },
         checkForm: function (e) {
-            if (this.question.category_id && this.question.name && this.question.description) {
+            if (this.service_cat.category_id && this.service_cat.image && this.service_cat.name && this.service_cat.description) {
             this.register();
             return true;
             }
 
             this.errors = [];
-            if (!this.question.category_id) {
+            if (!this.service_cat.category_id) {
             this.errors.push('Category required.');
             return false;
             }
-            if (!this.question.name) {
+            if (!this.service_cat.image) {
+            this.errors.push('Image required.');
+            return false;
+            }
+            if (!this.service_cat.name) {
             this.errors.push('Name required.');
             return false;
             }
-            if (!this.question.description) {
+            if (!this.service_cat.description) {
             this.errors.push('Description required.');
             return false;
             }
@@ -152,7 +131,7 @@ export default {
           var vm = this;
 
           reader.onload = (e) => {
-            vm.question.image = e.target.result;
+            vm.service_cat.image = e.target.result;
           };
           reader.readAsDataURL(file);
         },

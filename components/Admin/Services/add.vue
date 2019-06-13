@@ -1,76 +1,55 @@
 <template>
-    <div class="main-content-container container-fluid px-4">
-        <!-- Page Header -->
-        <div class="page-header row no-gutters py-4">
-            <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-            <h3 class="page-title">Add Service</h3>
-            <span class="text-uppercase page-subtitle">Fill form to create new service</span>
-            </div>
-        </div>
-        <!-- End Page Header -->
+<div>
+    <h3 class="page-title">{{ page }}</h3>
+    <div class="row">
+      <div class="col-md-8">
+        <!-- PANEL HEADLINE -->
+        <div class="panel panel-headline">
+          <div class="panel-heading">
+              <h3 class="panel-title">Add Service <nuxt-link to="/admin/service" class="pull pull-right btn btn-outline-primary"><i class="fa fa-arrow-left"></i> Go Back</nuxt-link></h3>
+              <span class="text-uppercase panel-subtitle">Fill form to create new service</span>
+          </div>
+          <div class="panel-body">
+            <form @submit.prevent="checkForm">
+                <p v-if="errors.length">
+                    <b>Please correct the following error(s):</b>
+                    <ul>
+                    <li class="text-danger" v-for="error in errors" :key="error">{{ error }}</li>
+                    </ul>
+                </p>
+                <div class="alert alert-success" v-if="success"><button type="button" class="pi-close" data-dismiss="alert"><i class="material-icons" data-dismiss="alert">close</i></button>{{ success }}</div>
+                <div class="alert alert-danger" v-if="error"><button type="button" class="pi-close" data-dismiss="alert"><i class="material-icons" data-dismiss="alert">close</i></button>{{ error }}</div>
 
-        <!-- Button -->
-        <div class="row">
-        <div class="col">
-            <nuxt-link to="/admin/service">
-            <button type="button" class="mb-2 btn btn-outline-primary mr-2">Go back</button></nuxt-link>
-        </div>
-        </div>
-        <!-- / Button -->
+                <div class="form-group">
+                    <input type="file" class="form-control" @change="onFileChange">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" v-model="category.name" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">
+                </div>
 
-        <!-- Form -->
-        <div class="row">
-            <div class="col">
-                <strong class="text-muted d-block mb-2"></strong>
-                <form @submit.prevent="checkForm">
-                    <p v-if="errors.length">
-                        <b>Please correct the following error(s):</b>
-                        <ul>
-                        <li class="text-danger" v-for="error in errors" :key="error">{{ error }}</li>
-                        </ul>
-                    </p>
-                    <div class="alert alert-success" v-if="success"><button type="button" class="pi-close" data-dismiss="alert"><i class="material-icons" data-dismiss="alert">close</i></button>{{ success }}</div>
-                    <div class="alert alert-danger" v-if="error"><button type="button" class="pi-close" data-dismiss="alert"><i class="material-icons" data-dismiss="alert">close</i></button>{{ error }}</div>
-
-                    <div class="form-group" style="max-width: 30%">
-                        <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                        </div>
-                        <input type="file" @change="onFileChange"> </div>
+                <div class="form-group">
+                    <textarea type="text" class="form-control" placeholder="Description" v-model="category.description" rows="4" aria-describedby="basic-addon1">
+                    </textarea>
+                </div>
+                <div class="row">
+                    <div class="col">
+                    <button type="submit" class="pull pull-right btn btn-primary"><i class="fa fa-plus"></i>Add Service</button>
                     </div>
-                    <div class="form-group" style="max-width: 30%">
-                        <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                        </div>
-                        <input type="text" class="form-control" v-model="category.name" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1"> </div>
-                    </div>
-
-                    <div class="form-group" style="max-width: 30%">
-                        <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                        </div>
-                        <textarea type="text" class="form-control" v-model="category.description" rows="4" aria-describedby="basic-addon1">
-                        </textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                        <button type="submit" class="mb-2 btn btn-primary mr-2">Add Service</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                </div>
+            </form>
+          </div>
         </div>
-        <!-- End Form -->
-
-        <!-- Button -->
-
-        <!-- / Button -->
+        <!-- END PANEL HEADLINE -->
+      </div>
     </div>
+
+
+</div>
 
 </template>
 <script>
 export default {
+  props:['page'],
     data(){
         return {
             errors: [],
@@ -105,7 +84,7 @@ export default {
             })
             .catch(err => {
                 this.error = ''
-                this.error = 'please verify that the data entered are correct.'
+                this.error = err.message
                 console.log(err)
             })
         },

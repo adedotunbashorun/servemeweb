@@ -1,15 +1,16 @@
 <template>
-    <div class="container-fluid">
-        <div class="row">
+    <div id="wrapper">
+          <Header :user="user"/>
             <SideBar/>
-            <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
-                <Header :user="user"/>
-                <div class="main-content-container container-fluid px-4" style="background-color:#fefefe">
+            <div class="main">
+              <div class="main-content">
+				        <div class="container-fluid">
                     <nuxt />
-                </div>
-                <Footer/>
-            </main>
-        </div>
+				        </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <Footer/>
     </div>
 </template>
 <script>
@@ -19,36 +20,34 @@ import Footer from '~/components/Layout/Admin/Footer.vue'
 
 export default {
   middleware: 'auth',
+  props: ['page'],
     head () {
         return {
             bodyAttrs: {
-                class: 'h-100'
+                class: ''
             },
             link: [
                 { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.0.6/css/all.css',crossorigin:'anonymous' },
                 { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' },
-                { rel: 'stylesheet',href: 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'},
-                { rel: 'stylesheet', href: '/styles/shards-dashboards.1.1.0.css', 'id':"main-stylesheet", 'data-version':"1.1.0" },
-                { rel: 'stylesheet', href: '/styles/extras.1.1.0.min.css' },
-                { rel: 'stylesheet',href: 'https://buttons.github.io/buttons.js'},
+                { rel: 'stylesheet',href: 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700'},
+                { rel: 'stylesheet', href: '/assets/vendor/bootstrap/css/bootstrap.min.css' },
+                { rel: 'stylesheet', href: '/assets/vendor/font-awesome/css/font-awesome.min.css' },
+                { rel: 'stylesheet',href: '/assets/vendor/linearicons/style.css'},
+                { rel: "stylesheet" , href: 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css'},
+                { rel: 'stylesheet',href: "/assets/vendor/chartist/css/chartist-custom.css"},
                 { rel: 'stylesheet',href: 'https://fonts.googleapis.com/css?family=Overpass|Raleway'},
-                { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Open+Sans' },
-                { rel: 'stylesheet',href: '/styled.css'},
-                { rel: 'stylesheet', href: '/styles/toastr/toastr.min.css'},
-                { rel: 'stylesheet', href:'//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css'}
+                { rel: 'stylesheet',href: '/assets/css/main.css'},
+                { rel: 'stylesheet', href: '/assets/css/demo.css'}
             ],
             script: [
-                { src: 'https://code.jquery.com/jquery-3.3.1.slim.min.js' },
+                { src: '/assets/vendor/jquery/jquery.min.js' },
                 { src: 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js' },
-                { src: 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'},
-                { src: 'https://unpkg.com/shards-ui@latest/dist/js/shards.min.js' },
-                { src: 'https://cdnjs.cloudflare.com/ajax/libs/Sharrre/2.0.1/jquery.sharrre.min.js' },
-                { src: '/scripts/extras.1.1.0.min.js' },
-                // { src: '/scripts/shards-dashboards.1.1.0.min.js' },
-                { src: '/scripts/app/app-blog-overview.1.1.0.js' },
+                { src: '/assets/vendor/bootstrap/js/bootstrap.min.js'},
+                { src: '/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js' },
+                { src: "/assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"},
+		            { src: "/assets/vendor/chartist/js/chartist.min.js"},
                 { src: '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js'},
-                { src: '/scripts/toastr/toastr.init.js' },
-                { src: '/scripts/toastr/toastr.min.js' },
+                { src: '/assets/scripts/klorofil-common.js' }
             ]
         }
     },

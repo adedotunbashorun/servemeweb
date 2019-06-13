@@ -1,9 +1,9 @@
 <template>
-    <footer class="main-footer d-flex p-2 px-3 bg-serveme border-top">
-      <span class="copyright ml-auto my-auto mr-2 text-white">Copyright © <span id="year">2019</span>
-        <a href="!#" rel="nofollow">ServeMe</a>
-      </span>
-    </footer>
+    <footer>
+			<div class="container-fluid">
+				<p class="copyright">&copy;  <span id="year">2019</span> <a href="!#" rel="nofollow">ServeMe</a>. All Rights Reserved.</p>
+			</div>
+		</footer>
 </template>
 <script>
 export default {

@@ -1,10 +1,17 @@
 <template>
-    <CreateQuestion :categories="categories" />
+    <CreateQuestion :categories="categories" :page="page" />
 </template>
 <script>
 import CreateQuestion from '~/components/Admin/ServiceCategory/add.vue'
 export default {
     layout: 'admin',
+    data(){
+        return {
+          errors: [],
+          service_categories: [],
+          page: "Create Service Category"
+        }
+    },
     components:{
         CreateQuestion
     },

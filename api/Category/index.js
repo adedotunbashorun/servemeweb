@@ -15,7 +15,7 @@ const allCategory = (header) => {
 
 const allCategoryQuestions = (data,header) => {
     return new Promise((resolve, reject) => {
-        axios.get(config.apiUrl + '/api/questions/'+data, { headers: { Authorization: header } })
+        axios.get(config.apiUrl + '/api/subcategories/'+data, { headers: { Authorization: header } })
             .then(resp => {
                 resolve(resp)
             })

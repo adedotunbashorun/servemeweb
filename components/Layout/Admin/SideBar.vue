@@ -1,5 +1,5 @@
 <template>
-    <aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0 bg-serveme">
+    <!-- <aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0 bg-serveme">
         <div class="main-navbar">
         <nav class="navbar align-items-stretch navbar-light bg-serveme flex-md-nowrap border-bottom p-0">
             <a class="navbar-brand w-100 mr-0" href="#" style="line-height: 25px;">
@@ -56,7 +56,24 @@
             </li>
         </ul>
         </div>
-    </aside>
+    </aside> -->
+    <div id="sidebar-nav" class="sidebar">
+			<div class="sidebar-scroll">
+				<nav>
+	          <ul class="nav">
+					    <li><nuxt-link to="/admin/dashboard" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></nuxt-link></li>
+
+              <li><nuxt-link to="/admin/users" class=""><i class="fa fa-users"></i> <span>Users</span></nuxt-link></li>
+
+							<li><nuxt-link to="/admin/service" class=""><i class="lnr lnr-code"></i> <span>Service</span></nuxt-link></li>
+
+							<li><nuxt-link to="/admin/service_category" class=""><i class="lnr lnr-chart-bars"></i> <span>Service Category</span></nuxt-link></li>
+
+							<li><a @click="logoutUser"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+	          </ul>
+        </nav>
+			</div>
+		</div>
 </template>
 <script>
 const Cookie = process.client ? require('js-cookie') : undefined

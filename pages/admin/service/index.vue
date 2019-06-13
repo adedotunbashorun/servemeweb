@@ -1,10 +1,15 @@
 <template>
-    <Category :categories="categories"/>
+    <Category :categories="categories" :page="page"/>
 </template>
 <script>
 import Category from '~/components/Admin/Services/index.vue'
 export default {
     layout: 'admin',
+    data(){
+      return{
+        page: 'Services'
+      }
+    },
     components:{
         Category
     },

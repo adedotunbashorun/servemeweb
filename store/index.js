@@ -3,7 +3,7 @@
 import Vuex from 'vuex'
 import auth from './auth'
 import category from './category'
-import question from './question'
+import service_category from './service_category'
 
 const store = () => {
   return new Vuex.Store({
@@ -11,7 +11,7 @@ const store = () => {
     modules: {
       auth,
       category,
-      question
+      service_category
     }
 
   })

@@ -90,8 +90,6 @@
 <script>
   const Cookie = process.client ? require('js-cookie') : undefined
   export default {
-    middleware: 'guest',
-    layout: 'site',
     data(){
         return {
           errors: [],
@@ -120,8 +118,8 @@
             let component = this;
             this.$store.dispatch('login', component.user)
             .then((resp) => {
-              if(resp.data.error){
-                component.errors.push(resp.data.message)
+              if(resp.data.error || resp.data.name){
+                component.errors.push(resp.data.message || 'error connecting to database')
               }else{
                 const token = resp.data.token
                 const user = resp.data.user
