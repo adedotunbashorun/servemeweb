@@ -1,5 +1,5 @@
 <template>
-    <CreateCategory />
+    <CreateCategory :page="page"/>
 </template>
 <script>
 import CreateCategory from '~/components/Admin/Services/add.vue'

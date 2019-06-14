@@ -3,6 +3,8 @@
 import Vuex from 'vuex'
 import auth from './auth'
 import category from './category'
+import classes from './class'
+import settings from './settings'
 import service_category from './service_category'
 
 const store = () => {
@@ -11,7 +13,9 @@ const store = () => {
     modules: {
       auth,
       category,
-      service_category
+      service_category,
+      classes,
+      settings
     }
 
   })
