@@ -2,15 +2,15 @@ import axios from 'axios'
 import {config} from '../../config'
 
 const allSettings = (header) => {
-    return new Promise((resolve, reject) => {
-        axios.get(config.apiUrl + '/api/settings', { headers: { Authorization: header } })
-            .then(resp => {
-                resolve(resp)
-            })
-            .catch(err => {
-                reject(err)
-            })
+  return new Promise((resolve, reject) => {
+    axios.get(config.apiUrl +'/api/settings',{headers:{ Authorization: header}})
+    .then(resp => {
+        resolve(resp)
     })
+    .catch(err => {
+        reject(err)
+    })
+  })
 }
 
 

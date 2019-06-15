@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<nuxt-link to="/admin/dashboard"><img src="" alt="ServeMe Logo" class="img-responsive logo"></nuxt-link>
+				<nuxt-link to="/admin/dashboard"><img :src="settings.logo" style="width:50px;height:30px;" alt="ServeMe Logo" class="img-responsive logo"></nuxt-link>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
@@ -51,7 +51,7 @@
 const Cookie = process.client ? require('js-cookie') : undefined
 import {config} from '../../../config'
 export default {
-    props: ['user'],
+    props: ['user',"settings"],
     data(){
       return{
         id : '',

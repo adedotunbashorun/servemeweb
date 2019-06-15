@@ -32,20 +32,18 @@
                       <td>{{ question.name}}</td>
                       <td>{{question.description}}</td>
                       <td>
-                          <!-- <ul class="navbar-nav border-left flex-row ">
-                              <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                  <span class="d-none d-md-inline-block">Action</span>
-                              </a>
-                              <div class="dropdown-menu dropdown-menu-small"> -->
-                                  <nuxt-link class="" :to="{name: 'admin-service_category-id', params:{id : question._id}}" title="edit / view">
-                                  <i class="material-icons">edit</i></nuxt-link>
-                                  <!-- <div class="dropdown-divider"></div> -->
-                                  <a class="text-danger" style="cursor:pointer;" @click="deleteQuestion(question._id)" title="delete">
-                                  <i class="material-icons text-danger">delete</i></a>
-                              <!-- </div>
-                              </li>
-                          </ul> -->
+                        <div class="dropdown">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Action
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <nuxt-link class="" :to="{name: 'admin-service_category-id', params:{id : question._id}}" title="edit / view">
+                            <i class="material-icons">edit</i></nuxt-link>
+                            <div class="dropdown-divider"></div>
+                            <a class="text-danger" style="cursor:pointer;" @click="deleteQuestion(question._id)" title="delete">
+                            <i class="material-icons text-danger">delete</i></a>
+                          </div>
+                        </div>
                       </td>
                   </tr>
               </tbody>

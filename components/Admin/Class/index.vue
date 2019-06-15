@@ -30,20 +30,18 @@
                             <td>{{ category.name}}</td>
                             <td>{{category.description}}</td>
                             <td>
-                                <!-- <ul class="navbar-nav border-left flex-row ">
-                                    <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <span class="d-none d-md-inline-block">Action</span>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-small"> -->
-                                        <nuxt-link class="" :to="{name: 'admin-class-id', params:{id : category._id}}" title="edit / view">
-                                        <i class="material-icons">edit</i></nuxt-link>
-                                        <!-- <div class="dropdown-divider"></div> -->
-                                        <a class="text-danger" style="cursor:pointer;" @click="deleteCategory(category._id)" title="delete">
-                                        <i class="material-icons text-danger">delete</i></a>
-                                    <!-- </div>
-                                    </li>
-                                </ul> -->
+                              <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Action
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <nuxt-link class="dropdown-item" :to="{name: 'admin-class-id', params:{id : category._id}}" title="edit / view">
+                                  <i class="material-icons">edit</i></nuxt-link>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item text-danger" style="cursor:pointer;" @click="deleteCategory(category._id)" title="delete">
+                                  <i class="material-icons text-danger">delete</i></a>
+                                </div>
+                              </div>
                             </td>
                         </tr>
                     </tbody>

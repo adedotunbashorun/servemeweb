@@ -11,6 +11,9 @@ import {
   REMOVE_USER_FAILURE,
   ALL_USERS,
   ALL_USERS_SUCCESS,
+  APPROVE_USERS,
+  APPROVE_USERS_SUCCESS,
+  APPROVE_USERS_FAILURE,
   LOGIN,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
@@ -36,6 +39,16 @@ export const mutations = {
     state.showLoader = false
     state.error = payload
     state.users = []
+  },
+  [APPROVE_USERS] (state) {
+    state.showLoader = true
+  },
+  [APPROVE_USERS_SUCCESS] (state, payload) {
+    state.showLoader = false
+  },
+  [APPROVE_USERS_FAILURE](state, payload) {
+    state.showLoader = false
+    state.error = payload
   },
   [LOGIN](state) {
     state.showLoader = true

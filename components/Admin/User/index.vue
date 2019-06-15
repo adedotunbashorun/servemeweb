@@ -34,20 +34,24 @@
                     <td>{{ user.user_type }}</td>
                     <td style="color: #3ED60E">{{ user.is_active }}</td>
                     <td>
-                    <!-- <ul class="navbar-nav border-left flex-row ">
-                        <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            <span class="d-none d-md-inline-block">Action</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-small"> -->
-                            <nuxt-link class="" :to="{name: 'admin-users-id', params:{id : user._id}}" title="edit / view">
-                            <i class="material-icons">edit</i></nuxt-link>
-                            <!-- <div class="dropdown-divider"></div> -->
-                            <a v-if="user.user_type !== 'admin'" class="text-danger" style="cursor:pointer;" @click="deleteUser(user._id)" title="delete">
-                            <i class="material-icons text-danger">delete</i></a>
-                        <!-- </div>
-                        </li>
-                    </ul> -->
+                      <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Action
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <nuxt-link class="" :to="{name: 'admin-users-id', params:{id : user._id}}" title="edit / view">
+                          <i class="material-icons">edit</i></nuxt-link>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" style="cursor:pointer;" @click="activateUser(user._id)" title="activate">
+                          <i class="fa fa-check" v-if="user.is_active == false"></i> <i class="fa fa-times" v-else></i></a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" style="cursor:pointer;" @click="approveUser(user._id)" title="activate">
+                          <i class="fa fa-check" v-if="user.approval_status == false"></i> <i class="fa fa-times" v-else></i></a>
+                          <div class="dropdown-divider"></div>
+                          <a v-if="user.user_type !== 'admin'" class="text-danger" style="cursor:pointer;" @click="deleteUser(user._id)" title="delete">
+                          <i class="material-icons text-danger"></i></a>
+                        </div>
+                      </div>
                     </td>
                 </tr>
               </tbody>
@@ -70,6 +74,16 @@ export default {
     },
     methods:{
         deleteUser(id){
+            this.$store.dispatch('removeUser', [id,this.$store.state.auth.headers])
+            .then((resp) => {
+            }).catch(err => console.log())
+        },
+        approveUser(id){
+            this.$store.dispatch('approveUser', [id,this.$store.state.auth.headers])
+            .then((resp) => {
+            }).catch(err => console.log())
+        },
+        activateUser(id){
             this.$store.dispatch('removeUser', [id,this.$store.state.auth.headers])
             .then((resp) => {
             }).catch(err => console.log())

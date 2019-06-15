@@ -5,6 +5,7 @@ import auth from './auth'
 import category from './category'
 import classes from './class'
 import settings from './settings'
+import supports from './supports'
 import service_category from './service_category'
 
 const store = () => {
@@ -15,7 +16,8 @@ const store = () => {
       category,
       service_category,
       classes,
-      settings
+      settings,
+      supports
     }
 
   })

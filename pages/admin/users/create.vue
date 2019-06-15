@@ -1,5 +1,5 @@
 <template>
-    <CreateUser />
+    <CreateUser :page="page" />
 </template>
 <script>
 import CreateUser from '~/components/Admin/User/add.vue'

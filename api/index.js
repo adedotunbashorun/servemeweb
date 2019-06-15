@@ -4,6 +4,7 @@ import { Question } from './Question'
 import { Response } from './Response'
 import { Class } from './Class'
 import { Settings } from './Settings'
+import { Supports } from './Supports'
 
 export const Api =  {
     User,
@@ -11,5 +12,6 @@ export const Api =  {
     Question,
     Response,
     Class,
-    Settings
+    Settings,
+    Supports
 }

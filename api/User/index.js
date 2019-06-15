@@ -29,6 +29,18 @@ const allUser = (header) => {
     })
 }
 
+const approveUser = (data,header) => {
+  return new Promise((resolve, reject) => {
+      axios.get(config.apiUrl + '/api/set_approval_status/'+ data, { headers: { Authorization: header } })
+          .then(resp => {
+              resolve(resp)
+          })
+          .catch(err => {
+              reject(err)
+          })
+  })
+}
+
 const userById = (data, header) => {
     return new Promise((resolve, reject) => {
         axios.get(config.apiUrl + '/api/user/'+data, {headers:{ Authorization: header}})
@@ -118,6 +130,7 @@ export const User = {
     update,
     forgetPassword,
     activity,
+    approveUser,
     logout,
     allUser,
     userById,
