@@ -2,7 +2,7 @@
     <Supports :page="page" :supports="supports"/>
 </template>
 <script>
-import Supports from '~/components/Admin/Supports/index.vue'
+import Supports from '~/components/Admin/Supports/list.vue'
 export default {
     layout: 'admin',
     data(){
