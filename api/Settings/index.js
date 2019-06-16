@@ -13,6 +13,18 @@ const allSettings = (header) => {
   })
 }
 
+const allNotifications = (header) => {
+  return new Promise((resolve, reject) => {
+    axios.get(config.apiUrl +'/api/notifications',{headers:{ Authorization: header}})
+    .then(resp => {
+        resolve(resp)
+    })
+    .catch(err => {
+        reject(err)
+    })
+  })
+}
+
 
 const settingsById = (data, header) => {
     return new Promise((resolve, reject) => {
@@ -24,6 +36,18 @@ const settingsById = (data, header) => {
                 reject(err)
             })
     })
+}
+
+const markAsRead = (data, header) => {
+  return new Promise((resolve, reject) => {
+      axios.get(config.apiUrl + '/api/markasread/'+data, {headers:{ Authorization: header}})
+          .then(resp => {
+              resolve(resp)
+          })
+          .catch(err => {
+              reject(err)
+          })
+  })
 }
 
 const addSettings = (data, header) => {
@@ -54,5 +78,7 @@ export const Settings = {
     allSettings,
     settingsById,
     addSettings,
-    updateSettings
+    updateSettings,
+    allNotifications,
+    markAsRead
 }

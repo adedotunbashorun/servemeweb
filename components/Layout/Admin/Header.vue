@@ -13,15 +13,11 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
 								<i class="lnr lnr-alarm"></i>
-								<span class="badge bg-danger">5</span>
+								<span class="badge bg-danger">{{ notifications.length }}</span>
 							</a>
 							<ul class="dropdown-menu notifications">
-								<li><a href="#" class="notification-item"><span class="dot bg-warning"></span>System space is almost full</a></li>
-								<li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 unfinished tasks</a></li>
-								<li><a href="#" class="notification-item"><span class="dot bg-success"></span>Monthly report is available</a></li>
-								<li><a href="#" class="notification-item"><span class="dot bg-warning"></span>Weekly meeting in 1 hour</a></li>
-								<li><a href="#" class="notification-item"><span class="dot bg-success"></span>Your request has been approved</a></li>
-								<li><a href="#" class="more">See all notifications</a></li>
+								<li v-for="(notification,index) in notifications" :key="index"><a href="#" class="notification-item" @click="markAsRead(notification._id)"><span class="dot bg-warning"></span>{{ notification.data.message.msg }}</a></li>
+								<!-- <li><a href="#" class="more">See all notifications</a></li> -->
 							</ul>
 						</li>
 						<li class="dropdown">
@@ -55,11 +51,13 @@ export default {
     data(){
       return{
         id : '',
-        apiUrl:''
+        apiUrl:'',
+        notifications: []
       }
     },
     mounted(){
       this.apiUrl = config.apiUrl
+      this.allNotifications()
       this.id = this.$store.getters.authUser._id
     },
     methods:{
@@ -83,6 +81,24 @@ export default {
             this.$router.go('/')
           })
       },
+
+      allNotifications(){
+        this.$store.dispatch('allNotifications', this.$store.state.auth.headers)
+          .then((resp) => {
+            this.notifications = resp.data.notifications
+          }).catch(err =>{
+          })
+      },
+
+      markAsRead(id){
+        this.$store.dispatch('markAsRead', [id,this.$store.state.auth.headers])
+          .then((resp) => {
+            toastr.success(resp.data.msg)
+            const index = this.notifications.findIndex(notification => notification._id === id)
+            this.notifications.splice(index, 1)
+          }).catch(err =>{
+          })
+      }
     }
 }
 </script>

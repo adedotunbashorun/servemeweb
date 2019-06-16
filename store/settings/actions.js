@@ -29,6 +29,19 @@ export const actions = {
     })
   },
 
+  allNotifications({ commit }, header) {
+    // commit(ALL_SETTINGS)
+    return new Promise((resolve, reject) => {
+      Api.Settings.allNotifications(header).then( response => {
+        // commit(ALL_SETTINGS_SUCCESS,response.data)
+        resolve(response)
+      }).catch(err => {
+        // commit(ALL_SETTINGS_FAILURE, err)
+        reject(err)
+      })
+    })
+  },
+
   settingsById({ commit }, [payload,header]) {
     commit(SETTINGS_BY_ID)
     return new Promise((resolve, reject) => {
@@ -37,6 +50,19 @@ export const actions = {
         resolve(response)
       }).catch(err => {
         commit(SETTINGS_BY_ID_FAILURE, err)
+        reject(err)
+      })
+    })
+  },
+
+  markAsRead({ commit }, [payload,header]) {
+    // commit(SETTINGS_BY_ID)
+    return new Promise((resolve, reject) => {
+      Api.Settings.markAsRead(payload, header).then(response => {
+        // commit(SETTINGS_BY_ID_SUCCESS, response.data)
+        resolve(response)
+      }).catch(err => {
+        // commit(SETTINGS_BY_ID_FAILURE, err)
         reject(err)
       })
     })

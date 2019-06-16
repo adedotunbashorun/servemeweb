@@ -4,7 +4,7 @@
 <script>
 import Dashboard from '~/components/Admin/dashboard.vue'
 export default {
-    layout: 'admin',
+    // layout: 'admin',
     components:{
         Dashboard
     },
