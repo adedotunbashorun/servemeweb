@@ -65,7 +65,7 @@ export default {
             return this.$store.getters.authUser
         },
         settings(){
-          return this.$store.getters.allSettings.data
+          return this.$store.getters.allSettings
         }
     },
     mounted(){
@@ -102,7 +102,6 @@ export default {
           this.$store.dispatch('allSettings', this.$store.state.auth.headers)
             .then((resp) => {
             }).catch(err =>{
-
             })
         }
     }
