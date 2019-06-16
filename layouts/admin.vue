@@ -18,6 +18,7 @@ import Header from '~/components/Layout/Admin/Header.vue'
 import SideBar from '~/components/Layout/Admin/SideBar.vue'
 import Footer from '~/components/Layout/Admin/Footer.vue'
 import {config} from '../config'
+import axios from 'axios'
 export default {
   middleware: 'auth',
   props: ['page'],
