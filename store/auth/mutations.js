@@ -53,12 +53,12 @@ export const mutations = {
   [LOGIN](state) {
     state.showLoader = true
   },
-  [LOGIN_SUCCESS](state, payload) {
+  [LOGIN_SUCCESS](state, [token, user]) {
     state.showLoader = false
-    state.user = payload.user
-    state.headers =  payload.token
+    state.user = user
+    state.headers =  token
     state.error = ''
-    state.token = payload.token
+    state.token = token
   },
   [LOGIN_FAILURE](state, payload) {
     state.showLoader = false

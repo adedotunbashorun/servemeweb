@@ -15,7 +15,7 @@ export default {
       }
     },
     mounted(){
-      console.log(this.$store.state.auth)
+      console.log(this.$store.state.auth.headers)
       this.getCount()
     },
     computed:{

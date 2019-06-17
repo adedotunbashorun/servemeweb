@@ -121,10 +121,9 @@
               if(resp.data.error || resp.data.name){
                 component.errors.push(resp.data.message || 'error connecting to database')
               }else{
-                const token = resp.data.token
-                const user = resp.data.user
-                Cookie.set('jwtToken', token)
-                Cookie.set('user', user)
+                this.$store.commit('LOGIN_SUCCESS', [resp.data.token, resp.data.user])
+                Cookie.set('jwtToken', resp.data.token)
+                Cookie.set('user', resp.data.user)
                 this.$router.go('/admin/dashboard')
               }
             })
