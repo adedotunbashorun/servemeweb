@@ -20,7 +20,7 @@ import Footer from '~/components/Layout/Admin/Footer.vue'
 import {config} from '../config'
 import axios from 'axios'
 export default {
-  // middleware: 'auth',
+  middleware: 'auth',
   props: ['page'],
     head () {
         return {

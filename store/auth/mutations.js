@@ -78,7 +78,10 @@ export const mutations = {
   },
   [LOGOUT_FAILURE](state, payload) {
     state.showLoader = false
-    state.error = payload
+    state.user = {}
+    state.headers = ''
+    state.error = ''
+    state.token = ''
   },
   [USER_BY_ID] (state) {
     state.showLoader = true
