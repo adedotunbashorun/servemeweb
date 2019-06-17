@@ -125,7 +125,7 @@
                 const user = resp.data.user
                 Cookie.set('jwtToken', token)
                 Cookie.set('user', user)
-                this.$router.go('/admin/dashboard')
+                this.$router.push('/admin/dashboard')
               }
             })
             .catch(err =>  {

@@ -11,11 +11,11 @@ export default {
     data(){
       return{
         result:{},
-        page: ''
+        page: 'Dashboard'
       }
     },
     mounted(){
-      this.page = "Dashboard"
+      console.log(this.$store.state.auth)
       this.getCount()
     },
     computed:{
