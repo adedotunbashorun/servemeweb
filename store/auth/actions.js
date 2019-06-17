@@ -141,22 +141,23 @@ export const actions = {
       })
     })
   },
-  nuxtServerInit({ commit }, { req }) {
-    // let token = '', user = {}
-    if (req.headers.cookie) {
-      const parsed = cookieparser.parse(req.headers.cookie)
-      try {
-        token = parsed.jwtToken
-        user = JSON.parse(parsed.user)
-        let data = { token: token, user: user }
-        commit(LOGIN_SUCCESS, data )
-      } catch (err) {
-        alert('helo')
-        // No valid cookie found
-      }
-    }
+  // nuxtServerInit({ commit }, { req }) {
+  //   // let token = '', user = {}
+  //   if (req.headers.cookie) {
+  //     const parsed = cookieparser.parse(req.headers.cookie)
+  //     try {
+  //       token = parsed.jwtToken
+  //       user = JSON.parse(parsed.user)
+  //       let data = { token: token, user: user }
+  //       commit(LOGIN_SUCCESS, data )
+  //     } catch (err) {
+  //       console.log(err)
+  //       alert('helo')
+  //       // No valid cookie found
+  //     }
+  //   }
 
-  }
+  // }
 }
 
 
