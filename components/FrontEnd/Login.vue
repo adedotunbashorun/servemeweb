@@ -126,7 +126,7 @@
                 this.$store.commit('LOGIN_SUCCESS', {token, user})
                 Cookie.set('jwtToken', token)
                 Cookie.set('user', user)
-                this.$router.go('/admin/dashboard')
+                this.$router.push('/admin/dashboard')
               }
             })
             .catch(err =>  {

@@ -72,6 +72,7 @@ export const actions = {
     commit(LOGIN)
     return new Promise((resolve, reject) => {
       Api.User.login(payload).then(response => {
+        // commit(LOGIN_SUCCESS, [response.data.token, response.data.user])
         resolve(response)
       }).catch(err => {
         commit(LOGIN_FAILURE, err)
@@ -148,6 +149,7 @@ export const actions = {
         token = parsed.jwtToken
         user = JSON.parse(parsed.user)
       } catch (err) {
+        alert('helo')
         // No valid cookie found
       }
     }
