@@ -246,8 +246,10 @@ export default {
           this.error = ''
           this.success = ''
           if(resp.data.error){
+            toastr.error(resp.data.msg)
             this.error = resp.data.msg
           }else{
+            toastr.success(resp.data.msg)
             this.success = resp.data.msg
             this.errors = []
           }

@@ -142,6 +142,7 @@ import Adedotun from '../../Extra/adedotun'
           Status(value){
             this.$store.dispatch('updateSupport', [this.$route.params.id, value, this.$store.state.auth.headers])
             .then((resp) => {
+              toastr.success(resp.data.msg)
               this.support = resp.data.support
             }).catch(err => console.log())
           },
@@ -156,6 +157,7 @@ import Adedotun from '../../Extra/adedotun'
             this.$store.dispatch('supportReplies', [this.reply,this.$store.state.auth.headers])
             .then((resp) => {
               this.reply.message = '';
+              toastr.success(resp.data.msg)
               this.getSupport();
               this.getReplies();
               this.Priorities();

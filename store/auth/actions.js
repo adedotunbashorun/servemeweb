@@ -146,7 +146,6 @@ export const actions = {
     let token = '', user = {}
     if (req.headers.cookie) {
       const parsed = cookieparser.parse(req.headers.cookie)
-      console.log(parsed)
       try {
         token = parsed.jwtToken
         user = JSON.parse(parsed.user)
