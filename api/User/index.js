@@ -6,9 +6,6 @@ const login = (data) => {
     return new Promise((resolve, reject) => {
         axios.post(config.apiUrl + '/api/login', data)
             .then(resp => {
-                const token = resp.data.token
-                const user = resp.data.user
-                // axios.defaults.headers.common['Authorization'] = resp.data.token
                 resolve(resp)
             })
             .catch(err => {
@@ -31,7 +28,19 @@ const allUser = (header) => {
 
 const approveUser = (data,header) => {
   return new Promise((resolve, reject) => {
-      axios.get(config.apiUrl + '/api/set_approval_status/'+ data, { headers: { Authorization: header } })
+      axios.get(config.apiUrl + '/api/user/set_approval_status/'+ data, { headers: { Authorization: header } })
+          .then(resp => {
+              resolve(resp)
+          })
+          .catch(err => {
+              reject(err)
+          })
+  })
+}
+
+const activateUser = (data) => {
+  return new Promise((resolve, reject) => {
+      axios.patch(config.apiUrl + '/api/activate/'+ data)
           .then(resp => {
               resolve(resp)
           })
@@ -131,6 +140,7 @@ export const User = {
     forgetPassword,
     activity,
     approveUser,
+    activateUser,
     logout,
     allUser,
     userById,

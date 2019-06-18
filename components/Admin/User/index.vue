@@ -40,16 +40,20 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                           <nuxt-link class="" :to="{name: 'admin-users-id', params:{id : user._id}}" title="edit / view">
-                          <i class="material-icons">edit</i></nuxt-link>
+                          <i class="fa fa-edit"></i> Edit</nuxt-link>
                           <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" style="cursor:pointer;" @click="activateUser(user._id)" title="activate">
-                          <i class="fa fa-check" v-if="user.is_active == false"></i> <i class="fa fa-times" v-else></i></a>
+                          <a class="dropdown-item text-success" style="cursor:pointer;" @click="activateUser(user._id)" title="activate" v-if="user.is_active == false">
+                          <i class="fa fa-check" ></i> Activate</a>
+                          <a class="dropdown-item text-danger" style="cursor:pointer;" @click="activateUser(user._id)" title="Deactivate" v-else>
+                          <i class="fa fa-times" ></i> Deactivate</a>
                           <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" style="cursor:pointer;" @click="approveUser(user._id)" title="activate">
-                          <i class="fa fa-check" v-if="user.approval_status == false"></i> <i class="fa fa-times" v-else></i></a>
+                          <a class="dropdown-item text-success" style="cursor:pointer;" @click="approveUser(user._id)" title="approve" v-if="user.approval_status == false && user.user_type == 'vendor'">
+                          <i class="fa fa-check" ></i> Approve</a>
+                          <a class="dropdown-item text-danger" style="cursor:pointer;" @click="approveUser(user._id)" title="Decline User" v-if="user.approval_status == true && user.user_type == 'vendor'">
+                          <i class="fa fa-times" ></i> Decline</a>
                           <div class="dropdown-divider"></div>
                           <a v-if="user.user_type !== 'admin'" class="text-danger" style="cursor:pointer;" @click="deleteUser(user._id)" title="delete">
-                          <i class="material-icons text-danger"></i></a>
+                          <i class="fa fa-delete text-danger"></i> Delete</a>
                         </div>
                       </div>
                     </td>
@@ -83,8 +87,9 @@ export default {
             .then((resp) => {
             }).catch(err => console.log())
         },
+
         activateUser(id){
-            this.$store.dispatch('removeUser', [id,this.$store.state.auth.headers])
+            this.$store.dispatch('activateUser', id)
             .then((resp) => {
             }).catch(err => console.log())
         }

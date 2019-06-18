@@ -44,10 +44,23 @@ export const actions = {
     })
   },
 
-  approveUser({ commit }, header) {
+  approveUser({ commit }, [data,header]) {
     commit(APPROVE_USERS)
     return new Promise((resolve, reject) => {
-      Api.User.approveUser(header).then( response => {
+      Api.User.approveUser(data,header).then( response => {
+        commit(APPROVE_USERS_SUCCESS,response.data)
+        resolve(response)
+      }).catch(err => {
+        commit(APPROVE_USERS_FAILURE, err)
+        reject(err)
+      })
+    })
+  },
+
+  activateUser({ commit }, data) {
+    commit(APPROVE_USERS)
+    return new Promise((resolve, reject) => {
+      Api.User.activateUser(data).then( response => {
         commit(APPROVE_USERS_SUCCESS,response.data)
         resolve(response)
       }).catch(err => {
