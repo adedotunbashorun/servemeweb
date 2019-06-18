@@ -29,7 +29,11 @@
                         <input type="file" class="form-control" @change="onFileChange">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" v-model="question.name" placeholder="Subject" aria-label="Subject" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control" v-model="question.name" placeholder="Name" aria-label="Subject" aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" v-model="question.price" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
                     </div>
 
                     <div class="form-group">
@@ -63,7 +67,8 @@ export default {
           name:'',
           description:'',
           category_id: '',
-          image: ''
+          image: '',
+          price:''
         },
         success: '',
         error: ''
@@ -100,7 +105,7 @@ export default {
         .catch(err => this.error = 'please verify that the data entered are correct.')
     },
     checkForm: function (e) {
-        if (this.question.category_id && this.question.subject && this.question.description) {
+        if (this.question.category_id && this.question.price && this.question.subject && this.question.description) {
         this.update();
         return true;
         }
@@ -112,6 +117,10 @@ export default {
         }
         if (!this.question.name) {
         this.errors.push('Name required.');
+        return false;
+        }
+        if (!this.question.price) {
+        this.errors.push('Price required.');
         return false;
         }
         if (!this.question.description) {

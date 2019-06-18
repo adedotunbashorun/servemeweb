@@ -33,6 +33,10 @@
                 </div>
 
                 <div class="form-group">
+                    <input type="text" class="form-control" v-model="service_cat.price" placeholder="Price" aria-label="Subject" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="form-group">
                     <textarea type="text" class="form-control" v-model="service_cat.description" placeholder="Description" rows="4" aria-describedby="basic-addon1">
                     </textarea>
                 </div>
@@ -61,6 +65,7 @@ export default {
             service_cat: {
                 category_id: '',
                 name:'',
+                price:'',
                 description:'',
                 image:''
             },
@@ -84,6 +89,7 @@ export default {
                 this.service_cat= {
                     category_id: '',
                     name:'',
+                    price:'',
                     description:'',
                     image: ''
                 }
@@ -97,7 +103,7 @@ export default {
             })
         },
         checkForm: function (e) {
-            if (this.service_cat.category_id && this.service_cat.image && this.service_cat.name && this.service_cat.description) {
+            if (this.service_cat.category_id && this.service_cat.price &&this.service_cat.image && this.service_cat.name && this.service_cat.description) {
             this.register();
             return true;
             }
@@ -113,6 +119,10 @@ export default {
             }
             if (!this.service_cat.name) {
             this.errors.push('Name required.');
+            return false;
+            }
+            if (!this.service_cat.price) {
+            this.errors.push('Price required.');
             return false;
             }
             if (!this.service_cat.description) {
