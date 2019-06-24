@@ -47,17 +47,15 @@
 const Cookie = process.client ? require('js-cookie') : undefined
 import {config} from '../../../config'
 export default {
-    props: ['user',"settings"],
+    props: ['user',"settings","notifications"],
     data(){
       return{
         id : '',
         apiUrl:'',
-        notifications: []
       }
     },
     mounted(){
       this.apiUrl = config.apiUrl
-      this.allNotifications()
       this.id = this.$store.getters.authUser._id
     },
     methods:{
@@ -73,14 +71,6 @@ export default {
             Cookie.remove('jwtToken')
             Cookie.remove('user')
             this.$router.go('/login')
-          })
-      },
-
-      allNotifications(){
-        this.$store.dispatch('allNotifications', this.$store.state.auth.headers)
-          .then((resp) => {
-            this.notifications = resp.data.notifications
-          }).catch(err =>{
           })
       },
 

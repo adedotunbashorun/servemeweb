@@ -29,6 +29,14 @@
                 </div>
 
                 <div class="form-group">
+                    <input type="number" class="form-control" v-model="settings.maximum_km" placeholder="Maximum Km" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="form-group">
+                    <input type="number" class="form-control" v-model="settings.price_km" placeholder="Price Per Km" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="form-group">
                     <input type="text" class="form-control" v-model="settings.paystack_live_public_key" placeholder="Paystack Live Public Key" aria-label="Name" aria-describedby="basic-addon1">
                 </div>
 
@@ -108,6 +116,8 @@ export default {
                 pusher_app_cluster: '',
                 pusher_app_encrypted: '',
                 description:'',
+                maximum_km: 0,
+                price_km: 0
             },
             success: '',
             error: ''

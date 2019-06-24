@@ -37,6 +37,10 @@
                 </div>
 
                 <div class="form-group">
+                    <input type="text" class="form-control" v-model="service_cat.estimated_time" placeholder="Estimated Time" aria-label="Subject" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="form-group">
                     <textarea type="text" class="form-control" v-model="service_cat.description" placeholder="Description" rows="4" aria-describedby="basic-addon1">
                     </textarea>
                 </div>
@@ -66,6 +70,7 @@ export default {
                 category_id: '',
                 name:'',
                 price:'',
+                estimated_time: '',
                 description:'',
                 image:''
             },
@@ -89,6 +94,7 @@ export default {
                 this.service_cat= {
                     category_id: '',
                     name:'',
+                    estimated_time:'',
                     price:'',
                     description:'',
                     image: ''
@@ -99,7 +105,6 @@ export default {
             })
             .catch(err => {
                 this.error = err.message
-                console.log(err)
             })
         },
         checkForm: function (e) {

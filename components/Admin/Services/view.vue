@@ -32,6 +32,10 @@
                     </div>
 
                     <div class="form-group">
+                        <input type="text" class="form-control" v-model="data.estimated_time" placeholder="Estimated Time" aria-label="Price" aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="form-group">
                         <textarea type="text" class="form-control" v-model="data.description" rows="4" aria-describedby="basic-addon1">
                         </textarea>
                     </div>
@@ -104,6 +108,7 @@ export default {
         data: {
             name:'',
             description:'',
+            estimated_time: '',
             image: '',
             price: ''
         },

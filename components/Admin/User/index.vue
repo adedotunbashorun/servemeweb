@@ -80,18 +80,19 @@ export default {
         deleteUser(id){
             this.$store.dispatch('removeUser', [id,this.$store.state.auth.headers])
             .then((resp) => {
-            }).catch(err => console.log())
+              toastr.success(resp.data.msg)
+            }).catch(err => toastr.error(err.message))
         },
         approveUser(id){
             this.$store.dispatch('approveUser', [id,this.$store.state.auth.headers])
-            .then((resp) => {
-            }).catch(err => console.log())
+            .then((resp) => { toastr.success(resp.data.msg)
+            }).catch(err => toastr.error(err.message))
         },
 
         activateUser(id){
             this.$store.dispatch('activateUser', id)
-            .then((resp) => {
-            }).catch(err => console.log())
+            .then((resp) => { toastr.success(resp.data.msg)
+            }).catch(err => toastr.error(err.message))
         }
     }
 }

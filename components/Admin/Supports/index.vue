@@ -7,8 +7,8 @@
         <div class="panel">
           <div class="panel-heading">
             <h3 class="panel-title">Support List
-              <nuxt-link to="/admin/supports/create" class="pull pull-right btn btn-outline-primary">
-              Create Support</nuxt-link>
+              <!-- <nuxt-link to="/admin/supports/create" class="pull pull-right btn btn-outline-primary">
+              Create Support</nuxt-link> -->
             </h3>
             <hr/>
           </div>

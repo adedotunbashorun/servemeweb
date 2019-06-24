@@ -1,6 +1,6 @@
 <template>
     <div id="wrapper">
-          <Header :user="user" :settings="settings"/>
+          <Header :user="user" :settings="settings" :notifications="notifications" />
             <SideBar/>
             <div class="main">
               <div class="main-content">
@@ -57,7 +57,7 @@ export default {
     },
     data(){
         return {
-          // notifications: []
+          notifications: []
             // user: {}
         }
     },
@@ -74,6 +74,7 @@ export default {
     },
     mounted(){
       this.listenPusher()
+      this.allNotifications()
     },
     methods:{
       listenPusher(){
@@ -99,6 +100,7 @@ export default {
                 event.preventDefault();
                 notification.close();
             }
+            this.allNotifications()
         })
         .bind('settings', function ({user, message}) {
             // if we're on the home page, show an "Updated" badge
@@ -111,6 +113,7 @@ export default {
                 event.preventDefault();
                 notification.close();
             }
+            this.allSettings()
         });
       },
 
@@ -119,7 +122,14 @@ export default {
             .then((resp) => {
             }).catch(err =>{
             })
-        },
+      },
+      allNotifications(){
+        this.$store.dispatch('allNotifications', this.$store.state.auth.headers)
+          .then((resp) => {
+            this.notifications = resp.data.notifications
+          }).catch(err =>{
+          })
+      },
     }
 }
 </script>
