@@ -73,6 +73,9 @@ export default {
         }
     },
     mounted(){
+      if(this.user.user_type !== 'admin'){
+        this.$router.go('/login')
+      }
       this.listenPusher()
       this.allNotifications()
     },
