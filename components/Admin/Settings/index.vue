@@ -116,8 +116,8 @@ export default {
                 pusher_app_cluster: '',
                 pusher_app_encrypted: '',
                 description:'',
-                maximum_km: 0,
-                price_km: 0
+                maximum_km: '',
+                price_km: ''
             },
             success: '',
             error: ''
