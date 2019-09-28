@@ -71,6 +71,8 @@
 
 							<li><nuxt-link to="/admin/service_category" class=""><i class="lnr lnr-chart-bars"></i> <span>Service Category</span></nuxt-link></li>
 
+              <li><nuxt-link to="/admin/order" class=""><i class="lnr lnr-chart-bars"></i> <span>Orders</span></nuxt-link></li>
+
               <li><nuxt-link to="/admin/supports" class=""><i class="fa fa-support"></i> <span>Support</span></nuxt-link></li>
 
               <li><nuxt-link to="/admin/settings" class=""><i class="fa fa-cogs"></i> <span>Settings</span></nuxt-link></li>

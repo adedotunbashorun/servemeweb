@@ -164,7 +164,10 @@
             }
             let component = this;
             this.$store.dispatch('forgetPassword', component.login)
-            .then((user) => $("#forgetPassword .close").click() )
+            .then((user) =>{
+              $("#login").show()
+              $("#forgetPassword").hide()
+            })
             .catch(err => console.log(err))
         },
     }

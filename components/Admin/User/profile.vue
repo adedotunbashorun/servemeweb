@@ -13,8 +13,8 @@
             <div class="profile-main">
               <img src="assets/img/user-medium.png" class="img-circle" alt="Avatar">
               <h3 class="name">{{ user_details.first_name +' ' + user_details.last_name}}</h3>
-              <span class="online-status status-available" v-if="user_details.online_status == 'true'">Available</span>
-              <span class="offline-status status-available" v-else>Not Available</span>
+              <span class="online-status status-available" v-if="user_details.online_status == 'true'" @click="toggleUserOnlineStatus()">Available</span>
+              <span class="offline-status status-available" v-else @click="toggleUserOnlineStatus()">Not Available</span>
             </div>
             <div class="profile-stat">
               <div class="row">
@@ -59,6 +59,7 @@
             <ul class="nav" role="tablist">
               <li class="active"><a href="#tab-bottom-left1" role="tab" data-toggle="tab">Recent Activity</a></li>
               <li><a href="#tab-bottom-left2" role="tab" data-toggle="tab">Edit Profile</a></li>
+              <li><a href="#tab-bottom-left4" role="tab" data-toggle="tab" v-if="user_details.user_type === 'vendor'">Assign Service</a></li>
               <li><a href="#tab-bottom-left3" role="tab" data-toggle="tab">Supports</a></li>
             </ul>
           </div>
@@ -128,8 +129,8 @@
                                 <input type="text" class="form-control" v-model="user_details.last_name" placeholder="Last Name" aria-label="Full name" aria-describedby="basic-addon1">
                             </div>
                             <div class="form-group">
-                                <input type="text" v-model="user_details.phone" pattern="[0-9]{6,14}[0-9]$" class="form-control" placeholder="Phone Number" value="">
-                                <span class="note">Format: 2349034268873</span>
+                                <input type="text" v-model="user_details.phone" pattern="^\+[1-9]\d{1,14}$" class="form-control" placeholder="Phone Number" value="">
+                                <span class="note">Format: +2349034268873</span>
                             </div>
 
                             <div class="form-group">
@@ -143,6 +144,35 @@
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="mb-2 btn btn-primary mr-2">Update User</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="tab-bottom-left4">
+              <div class="table-responsive">
+                <form @submit.prevent="assignServices">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong class="text-muted d-block mb-2"></strong>
+                            <p v-if="errors.length">
+                                <b>Please correct the following error(s):</b>
+                                <ul>
+                                <li class="text-danger" v-for="error in errors" :key="error">{{ error }}</li>
+                                </ul>
+                            </p>
+                            <div class="alert alert-success" v-if="success"><i class="material-icons" data-dismiss="alert">close</i>{{ success }}</div>
+                            <div class="alert alert-danger" v-if="error"><i class="material-icons" data-dismiss="alert">close</i>{{ error }}</div>
+                            <div class="form-group">
+                                <select class="form-control" v-model="user_details.service_id">
+                                    <option value="">-- Select Service --</option>
+                                    <option v-for="service in services" :key="service._id" :value="service._id">{{ service.name }}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="mb-2 btn btn-primary mr-2">Assign Service</button>
                             </div>
                         </div>
                     </div>
@@ -199,8 +229,11 @@ export default {
     data(){
       return {
         errors: [],
+        services:[],
+        user_services: '',
         user_details: {
             title:'',
+            service_id: '',
             user_type: '',
             address:'',
             first_name:'',
@@ -223,19 +256,40 @@ export default {
       Adedotun
   },
   mounted(){
-        this.getUser()
+        this.getUser();
+        this.allCategories();
         setTimeout(() => {
-            $('#activity-table').DataTable({})
+            $('#activity-table').DataTable({});
         },2000)
 
   },
   methods: {
+
+    assignServices(){
+      this.update();
+    },
+
+    allCategories(){
+      this.$store.dispatch('allCategories', this.$store.state.auth.headers)
+      .then((resp) => {
+        this.services = resp.data.categories;
+      }).catch(err => console.log())
+    },
+
     getUser(){
         this.$store.dispatch('userById', [(this.$nuxt._route.params.id) ? this.$nuxt._route.params.id : this.$store.getters.authUser._id,this.$store.state.auth.headers])
         .then((resp) => {
             this.user_details = resp.data.user
             this.activities = resp.data.activities
             this.supports  = resp.data.supports
+        }).catch(err => console.log())
+    },
+
+    toggleUserOnlineStatus(){
+        this.$store.dispatch('toggleUserOnlineStatus', [(this.$nuxt._route.params.id) ? this.$nuxt._route.params.id : this.$store.getters.authUser._id,this.$store.state.auth.headers])
+        .then((resp) => {
+            toastr.success(resp.data.msg);
+            this.user_details = resp.data.user;
         }).catch(err => console.log())
     },
 

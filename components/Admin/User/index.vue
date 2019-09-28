@@ -42,9 +42,9 @@
                           <nuxt-link class="" :to="{name: 'admin-users-id', params:{id : user._id}}" title="edit / view">
                           <i class="fa fa-edit"></i> Edit</nuxt-link>
                           <div class="dropdown-divider"></div>
-                          <a class="dropdown-item text-success" style="cursor:pointer;" @click="activateUser(user._id)" title="activate" v-if="user.is_active == false">
+                          <a class="dropdown-item text-success" style="cursor:pointer;" @click="activateUser(user._id,index)" title="activate" v-if="user.is_active == false">
                           <i class="fa fa-check" ></i> Activate</a>
-                          <a class="dropdown-item text-danger" style="cursor:pointer;" @click="activateUser(user._id)" title="Deactivate" v-else>
+                          <a class="dropdown-item text-danger" style="cursor:pointer;" @click="activateUser(user._id,index)" title="Deactivate" v-else>
                           <i class="fa fa-times" ></i> Deactivate</a>
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item text-success" style="cursor:pointer;" @click="approveUser(user._id)" title="approve" v-if="user.approval_status == false && user.user_type == 'vendor'">
@@ -89,9 +89,11 @@ export default {
             }).catch(err => toastr.error(err.message))
         },
 
-        activateUser(id){
+        activateUser(id,index){
             this.$store.dispatch('activateUser', id)
-            .then((resp) => { toastr.success(resp.data.msg)
+            .then((resp) => {
+              toastr.success(resp.data.msg);
+              // this.$emit.users[index].is_active = (this.users[index].is_active === false) ? true : false;
             }).catch(err => toastr.error(err.message))
         }
     }

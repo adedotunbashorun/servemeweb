@@ -38,9 +38,21 @@ const approveUser = (data,header) => {
   })
 }
 
+const toggleUserOnlineStatus = (data,header) => {
+  return new Promise((resolve, reject) => {
+      axios.get(config.apiUrl + '/api/toggle_online_status/'+ data, { headers: { Authorization: header } })
+          .then(resp => {
+              resolve(resp)
+          })
+          .catch(err => {
+              reject(err)
+          })
+  })
+}
+
 const activateUser = (data) => {
   return new Promise((resolve, reject) => {
-      axios.patch(config.apiUrl + '/api/activate/'+ data)
+      axios.patch(config.apiUrl + '/api/activates/'+ data)
           .then(resp => {
               resolve(resp)
           })
@@ -144,5 +156,6 @@ export const User = {
     logout,
     allUser,
     userById,
-    deleteUser
+    deleteUser,
+    toggleUserOnlineStatus
 }

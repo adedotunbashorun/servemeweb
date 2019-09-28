@@ -57,6 +57,19 @@ export const actions = {
     })
   },
 
+  toggleUserOnlineStatus({ commit }, [data,header]) {
+    commit(APPROVE_USERS)
+    return new Promise((resolve, reject) => {
+      Api.User.toggleUserOnlineStatus(data,header).then( response => {
+        commit(APPROVE_USERS_SUCCESS,response.data)
+        resolve(response)
+      }).catch(err => {
+        commit(APPROVE_USERS_FAILURE, err)
+        reject(err)
+      })
+    })
+  },
+
   activateUser({ commit }, data) {
     commit(APPROVE_USERS)
     return new Promise((resolve, reject) => {
