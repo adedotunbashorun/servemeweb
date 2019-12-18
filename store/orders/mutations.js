@@ -24,12 +24,12 @@ export const mutations = {
   },
   [ALL_ORDER_SUCCESS] (state, payload) {
     state.showLoader = false
-    state.ORDERes = payload.ORDERes
+    state.orders = payload.orders
   },
   [ALL_ORDER_FAILURE](state, payload) {
     state.showLoader = false
     state.error = payload
-    state.ORDERes = []
+    state.orders = []
   },
 
   [ORDER_BY_ID] (state) {
@@ -37,6 +37,7 @@ export const mutations = {
   },
   [ORDER_BY_ID_SUCCESS] (state, payload) {
     state.showLoader = false
+    state.order = payload.order
   },
   [ORDER_BY_ID_FAILURE](state, payload) {
     state.showLoader = false
@@ -47,7 +48,7 @@ export const mutations = {
   },
   [ADD_ORDER_SUCCESS]: (state, payload) => {
     state.showLoader = false
-    state.ORDERes.push(payload)
+    state.orders.push(payload)
   },
   [ADD_ORDER_FAILURE]: (state, payload) => {
     state.showLoader = false

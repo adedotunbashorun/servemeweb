@@ -48,8 +48,6 @@
                 </table>
           </div>
         </div>
-        <!-- END TABLE NO PADDING -->
-
       </div>
     </div>
   </div>
@@ -70,11 +68,7 @@ export default {
         },2000)
     },
     methods:{
-        deleteCategory(id){
-            this.$store.dispatch('removeClass', [id,this.$store.state.auth.headers])
-            .then((resp) => {
-            }).catch(err => console.log())
-        }
+
     }
 }
 </script>
