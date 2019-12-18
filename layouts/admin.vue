@@ -1,16 +1,16 @@
 <template>
     <div id="wrapper">
-          <Header :user="user" :settings="settings" :notifications="notifications" />
-            <SideBar/>
-            <div class="main">
-              <div class="main-content">
-				        <div class="container-fluid">
-                    <nuxt />
-				        </div>
-              </div>
+      <Header :user="user" :settings="settings" :notifications="notifications" />
+        <SideBar/>
+        <div class="main">
+          <div class="main-content">
+            <div class="container-fluid">
+                <nuxt />
             </div>
-            <div class="clearfix"></div>
-            <Footer :settings="settings"/>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <Footer :settings="settings"/>
     </div>
 </template>
 <script>
@@ -74,7 +74,7 @@ export default {
     },
     mounted(){
       if(this.user.user_type !== 'admin'){
-        this.$router.go('/login')
+        this.$router.push('/login')
       }
       this.listenPusher()
       this.allNotifications()

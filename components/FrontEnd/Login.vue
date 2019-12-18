@@ -43,7 +43,7 @@
 					</div>
 					<div class="container-login100-form-btn">
 						<button type="submit" class="login100-form-btn">
-							Login
+							<i class="loader" v-if="isLoading"></i> Login
 						</button>
 					</div>
 				</form>
@@ -76,7 +76,7 @@
           </div>
 					<div class="container-login100-form-btn">
 						<button type="submit" class="login100-form-btn">
-							Forget Password
+							<i class="loader" v-if="isLoading"></i> Password
 						</button>
 					</div>
 				</form>
@@ -88,11 +88,14 @@
 	</div>
 </template>
 <script>
+  // import 'vue-loading-overlay/dist/vue-loading.css';
   const Cookie = process.client ? require('js-cookie') : undefined
   export default {
     data(){
         return {
           errors: [],
+          isLoading: false,
+          loading: false,
           user: {
             email:'',
             password:''
@@ -101,6 +104,9 @@
             email:''
           }
         }
+    },
+    components: {
+      // Loading: () => import('vue-loading-overlay')
     },
     mounted(){
       $("#forget_password").hide();
@@ -116,18 +122,22 @@
     methods: {
         loginUser(){
             let component = this;
+            this.isLoading = true;
+            this.$nuxt.$loading.start()
             this.$store.dispatch('login', component.user)
             .then((resp) => {
               if(resp.data.error || resp.data.name){
+                this.isLoading = false;
                 component.errors.push(resp.data.message || 'error connecting to database')
               }else{
                 this.$store.commit('LOGIN_SUCCESS', [resp.data.token, resp.data.user])
                 Cookie.set('jwtToken', resp.data.token)
                 Cookie.set('user', resp.data.user)
-                this.$router.push('/admin/dashboard')
+                this.$router.go('/admin/dashboard')
               }
             })
             .catch(err =>  {
+              this.isLoading = false;
               component.errors.push(err)
               console.log(err)
             })
@@ -173,3 +183,18 @@
     }
   }
 </script>
+<style scoped>
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>

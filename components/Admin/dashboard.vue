@@ -327,5 +327,7 @@ export default {
     };
   },
   mounted() {}
-};
+}
+
+
 </script>

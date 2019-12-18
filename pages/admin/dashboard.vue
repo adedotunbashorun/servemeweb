@@ -9,7 +9,6 @@ export default {
     },
     data(){
       return{
-        result:{},
         page: 'Dashboard'
       }
     },
@@ -19,13 +18,15 @@ export default {
     computed:{
         user(){
             return this.$store.getters.authUser
+        },
+        result(){
+          return this.$store.state.settings.data
         }
     },
     methods:{
         getCount(){
             this.$store.dispatch('allCounts', this.$store.state.auth.headers)
             .then((resp) => {
-              this.result = resp.data.result
             }).catch(err => console.log())
         }
     }
