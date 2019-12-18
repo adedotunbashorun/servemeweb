@@ -14,7 +14,7 @@
 									<div class="metric">
 										<span class="icon"><i class="fa fa-download"></i></span>
 										<p>
-											<span class="number">1,252</span>
+											<span class="number">{{ result.users }}</span>
 											<span class="title">Total Users</span>
 										</p>
 									</div>
@@ -23,7 +23,7 @@
 									<div class="metric">
 										<span class="icon"><i class="fa fa-shopping-bag"></i></span>
 										<p>
-											<span class="number">203</span>
+											<span class="number">{{ result.vendors }}</span>
 											<span class="title">Vendors</span>
 										</p>
 									</div>
@@ -32,7 +32,7 @@
 									<div class="metric">
 										<span class="icon"><i class="fa fa-eye"></i></span>
 										<p>
-											<span class="number">274,678</span>
+											<span class="number">{{ result.clients }}</span>
 											<span class="title">Client</span>
 										</p>
 									</div>
@@ -41,7 +41,7 @@
 									<div class="metric">
 										<span class="icon"><i class="fa fa-bar-chart"></i></span>
 										<p>
-											<span class="number">35%</span>
+											<span class="number">{{ result.orders }}</span>
 											<span class="title">Service Provided</span>
 										</p>
 									</div>
@@ -129,7 +129,8 @@
 <script>
 export default {
   props: ['user','result','page'],
-  mounted(){}
+  mounted(){
+  }
 }
 
 </script>

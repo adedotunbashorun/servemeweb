@@ -65,12 +65,12 @@ export default {
           .then(() => {
             Cookie.remove('jwtToken')
             Cookie.remove('user')
-            this.$router.go('/login')
+            this.$router.push('/login')
           })
           .catch(err => {
             Cookie.remove('jwtToken')
             Cookie.remove('user')
-            this.$router.go('/login')
+            this.$router.push('/login')
           })
       },
 
