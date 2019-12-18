@@ -14,12 +14,11 @@ export default {
         Order
     },
     mounted(){
-        // this.allOrders()
+        this.allOrders()
     },
     computed:{
         orders(){
-          return [];
-            // return (this.$store.state.orders.orders) ? this.$store.state.orders.orders : [];
+          return (this.$store.state.orders.orders) ? this.$store.state.orders.orders : [];
         }
     },
     methods:{

@@ -2,11 +2,10 @@
     <Dashboard :user="user" :result="result" :page="page"/>
 </template>
 <script>
-import Dashboard from '~/components/Admin/dashboard.vue'
 export default {
     layout: 'admin',
     components:{
-        Dashboard
+        Dashboard: () => import('@/components/Admin/dashboard.vue'),
     },
     data(){
       return{
@@ -15,7 +14,6 @@ export default {
       }
     },
     mounted(){
-      console.log(this.$store.state.auth.headers)
       this.getCount()
     },
     computed:{
@@ -25,10 +23,10 @@ export default {
     },
     methods:{
         getCount(){
-            // this.$store.dispatch('allCounts', this.$store.state.auth.headers)
-            // .then((resp) => {
-            //   this.result = resp.data.result
-            // }).catch(err => console.log())
+            this.$store.dispatch('allCounts', this.$store.state.auth.headers)
+            .then((resp) => {
+              this.result = resp.data.result
+            }).catch(err => console.log())
         }
     }
 }
