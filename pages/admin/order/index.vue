@@ -2,7 +2,6 @@
     <Order :orders="orders" :page="page"/>
 </template>
 <script>
-import Order from '~/components/Admin/Order/index.vue'
 export default {
     layout: 'admin',
     data(){
@@ -11,14 +10,15 @@ export default {
       }
     },
     components:{
-        Order
+        Order: () => import('@/components/Admin/Order/index.vue')
     },
     mounted(){
         this.allOrders()
+        console.log(this.$store.state.orders)
     },
     computed:{
         orders(){
-          return (this.$store.state.orders.orders) ? this.$store.state.orders.orders : [];
+          return this.$store.state.orders.orders
         }
     },
     methods:{
