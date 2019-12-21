@@ -215,7 +215,7 @@
       </div>
     </section>
 
-    <section id="team" class="padd-section text-center wow fadeInUp">
+    <!-- <section id="team" class="padd-section text-center wow fadeInUp">
 
       <div class="container">
         <div class="section-title text-center">
@@ -291,7 +291,7 @@
 
         </div>
       </div>
-    </section>
+    </section> -->
 
     <section id="testimonials" class="padd-section text-center wow fadeInUp">
       <div class="container">
