@@ -105,6 +105,7 @@ export default {
             errors: [],
             settings: {
                 app_name:'',
+                id: '',
                 email:'',
                 paystack_live_public_key:'',
                 paystack_secret_public_key:'',
