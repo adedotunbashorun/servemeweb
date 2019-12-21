@@ -171,7 +171,7 @@ export default {
           this.$store.dispatch('allSettings', this.$store.state.auth.headers)
             .then((resp) => {
               (resp.data.settings == null) ? '' : this.settings = resp.data.settings.data
-
+              this.settings.id = resp.data.settings.id
             }).catch(err =>{
 
             })
