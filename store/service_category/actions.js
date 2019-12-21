@@ -1,86 +1,86 @@
 import { Api } from '../../api'
 
 import {
-  ADD_QUESTION,
-  ADD_QUESTION_SUCCESS,
-  ADD_QUESTION_FAILURE,
-  QUESTION_BY_ID,
-  QUESTION_BY_ID_SUCCESS,
-  QUESTION_BY_ID_FAILURE,
-  UPDATE_QUESTION,
-  UPDATE_QUESTION_SUCCESS,
-  UPDATE_QUESTION_FAILURE,
-  REMOVE_QUESTION,
-  REMOVE_QUESTION_SUCCESS,
-  REMOVE_QUESTION_FAILURE,
-  ALL_QUESTIONS,
-  ALL_QUESTIONS_SUCCESS,
-  ALL_QUESTIONS_FAILURE
+  ADD_SubCategory,
+  ADD_SubCategory_SUCCESS,
+  ADD_SubCategory_FAILURE,
+  SubCategory_BY_ID,
+  SubCategory_BY_ID_SUCCESS,
+  SubCategory_BY_ID_FAILURE,
+  UPDATE_SubCategory,
+  UPDATE_SubCategory_SUCCESS,
+  UPDATE_SubCategory_FAILURE,
+  REMOVE_SubCategory,
+  REMOVE_SubCategory_SUCCESS,
+  REMOVE_SubCategory_FAILURE,
+  ALL_SubCategoryS,
+  ALL_SubCategoryS_SUCCESS,
+  ALL_SubCategoryS_FAILURE
 } from './mutation-types'
 
 export const actions = {
-  allQuestions({ commit }, header) {
-    commit(ALL_QUESTIONS)
+  allSubCategories({ commit }, header) {
+    commit(ALL_SubCategoryS)
     return new Promise((resolve, reject) => {
-      Api.Question.allQuestions(header).then( response => {
-        commit(ALL_QUESTIONS_SUCCESS,response.data)
+      Api.SubCategory.allSubCategories(header).then( response => {
+        commit(ALL_SubCategoryS_SUCCESS,response.data)
         resolve(response)
       }).catch(err => {
-        commit(ALL_QUESTIONS_FAILURE, err)
+        commit(ALL_SubCategoryS_FAILURE, err)
         reject(err)
       })
     })
   },
 
-  questionById({ commit }, [payload,header]) {
-    commit(QUESTION_BY_ID)
+  SubCategoryById({ commit }, [payload,header]) {
+    commit(SubCategory_BY_ID)
     return new Promise((resolve, reject) => {
-      Api.Question.questionById(payload, header).then(response => {
-        commit(QUESTION_BY_ID_SUCCESS, response.data)
+      Api.SubCategory.SubCategoryById(payload, header).then(response => {
+        commit(SubCategory_BY_ID_SUCCESS, response.data)
         resolve(response)
       }).catch(err => {
-        commit(QUESTION_BY_ID_FAILURE, err)
-        reject(err)
-      })
-    })    
-  },
-
-  addQuestion ({commit}, [payload,header]) {
-    commit(ADD_QUESTION)
-    return new Promise((resolve, reject) => {
-      Api.Question.addQuestion(payload,header).then(response => {
-        commit(ADD_QUESTION_SUCCESS, response.data)
-        resolve(response)      
-      }).catch(err => {
-        commit(ADD_QUESTION_FAILURE, err)
+        commit(SubCategory_BY_ID_FAILURE, err)
         reject(err)
       })
     })
   },
 
-  updateQuestion ({commit}, [payload,header]) {
-    commit(UPDATE_QUESTION)
+  addSubCategory ({commit}, [payload,header]) {
+    commit(ADD_SubCategory)
     return new Promise((resolve, reject) => {
-      Api.Question.updateQuestion(payload, header).then(response => {
-        commit(UPDATE_QUESTION_SUCCESS, response.data)
+      Api.SubCategory.addSubCategory(payload,header).then(response => {
+        commit(ADD_SubCategory_SUCCESS, response.data)
         resolve(response)
       }).catch(err => {
-        commit(UPDATE_QUESTION_FAILURE, err)
+        commit(ADD_SubCategory_FAILURE, err)
         reject(err)
-      })  
-    })  
+      })
+    })
   },
 
-  deleteQuestion ({commit}, [payload,header]) {
-    commit(REMOVE_QUESTION)
+  updateSubCategory ({commit}, [payload,header]) {
+    commit(UPDATE_SubCategory)
     return new Promise((resolve, reject) => {
-      Api.Question.deleteQuestion(payload,header).then(response => {
-        commit(REMOVE_QUESTION_SUCCESS, response.data)
+      Api.SubCategory.updateSubCategory(payload, header).then(response => {
+        commit(UPDATE_SubCategory_SUCCESS, response.data)
         resolve(response)
       }).catch(err => {
-        commit(REMOVE_QUESTION_FAILURE, err)
+        commit(UPDATE_SubCategory_FAILURE, err)
         reject(err)
-      })  
+      })
+    })
+  },
+
+  deleteSubCategory ({commit}, [payload,header]) {
+    commit(REMOVE_SubCategory)
+    return new Promise((resolve, reject) => {
+      Api.SubCategory.deleteSubCategory(payload,header).then(response => {
+        commit(REMOVE_SubCategory_SUCCESS, response.data)
+        resolve(response)
+      }).catch(err => {
+        commit(REMOVE_SubCategory_FAILURE, err)
+        reject(err)
+      })
     })
   }
 }

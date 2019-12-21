@@ -40,7 +40,7 @@
                             <nuxt-link class="" :to="{name: 'admin-service_category-id', params:{id : question._id}}" title="edit / view">
                             <i class="material-icons">edit</i></nuxt-link>
                             <div class="dropdown-divider"></div>
-                            <a class="text-danger" style="cursor:pointer;" @click="deleteQuestion(question._id)" title="delete">
+                            <a class="text-danger" style="cursor:pointer;" @click="deleteSubCategory(question._id)" title="delete">
                             <i class="material-icons text-danger">delete</i></a>
                           </div>
                         </div>
@@ -72,8 +72,8 @@ export default {
         },2000)
     },
     methods:{
-        deleteQuestion(id){
-            this.$store.dispatch('deleteQuestion', [id,this.$store.state.auth.headers])
+        deleteSubCategory(id){
+            this.$store.dispatch('deleteSubCategory', [id,this.$store.state.auth.headers])
             .then((resp) => {
             }).catch(err => console.log())
         }

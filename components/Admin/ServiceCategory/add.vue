@@ -81,7 +81,7 @@ export default {
     methods: {
         register(){
             let component = this;
-            this.$store.dispatch('addQuestion', [component.service_cat,this.$store.state.auth.headers])
+            this.$store.dispatch('addSubCategory', [component.service_cat,this.$store.state.auth.headers])
             .then((resp) => {
               this.error = ''
               this.success = ''
