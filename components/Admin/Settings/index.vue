@@ -72,9 +72,9 @@
                     <input type="text" class="form-control" v-model="settings.pusher_app_encrypted" placeholder="Pusher Encryption" aria-describedby="basic-addon1">
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <input type="file" class="form-control" @change="onFileChange">
-                </div>
+                </div> -->
 
                 <div class="form-group">
                     <textarea type="text" class="form-control" placeholder="Description" v-model="settings.description" rows="4" aria-describedby="basic-addon1">
@@ -106,8 +106,6 @@ export default {
             settings: {
                 app_name:'',
                 email:'',
-                logo:'',
-                background_image:'',
                 paystack_live_public_key:'',
                 paystack_secret_public_key:'',
                 pusher_app_id: '',
