@@ -142,6 +142,7 @@ export default {
                   this.success = ''
                   this.success = resp.data.msg
                   this.errors = []
+                  this.allSettings()
                 }
             })
             .catch(err => {
