@@ -103,9 +103,9 @@ export default {
     data(){
         return {
             errors: [],
+            id: null,
             settings: {
                 app_name:'',
-                id: '',
                 email:'',
                 paystack_live_public_key:'',
                 paystack_secret_public_key:'',
@@ -129,6 +129,7 @@ export default {
     methods: {
         register(){
             let component = this;
+            component.settings.id = this.id
             this.$store.dispatch('addSettings', [component.settings,this.$store.state.auth.headers])
             .then((resp) => {
                this.error = ''
@@ -170,7 +171,7 @@ export default {
           this.$store.dispatch('allSettings', this.$store.state.auth.headers)
             .then((resp) => {
               (resp.data.settings == null) ? '' : this.settings = resp.data.settings.data
-              this.settings.id = resp.data.settings.id
+              this.id = resp.data.settings._id
             }).catch(err =>{
 
             })
