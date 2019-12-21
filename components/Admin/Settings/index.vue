@@ -129,7 +129,7 @@ export default {
     methods: {
         register(){
             let component = this;
-            component.settings.id = this.id
+            (this.id !== null) ? component.settings.id = this.id : ''
             this.$store.dispatch('addSettings', [component.settings,this.$store.state.auth.headers])
             .then((resp) => {
                this.error = ''
