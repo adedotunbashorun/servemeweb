@@ -27,13 +27,13 @@
                         <input type="text" class="form-control" v-model="data.name" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">
                     </div>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <input type="text" class="form-control" v-model="data.price" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1">
                     </div>
 
                     <div class="form-group">
                         <input type="text" class="form-control" v-model="data.estimated_time" placeholder="Estimated Time" aria-label="Price" aria-describedby="basic-addon1">
-                    </div>
+                    </div> -->
 
                     <div class="form-group">
                         <textarea type="text" class="form-control" v-model="data.description" rows="4" aria-describedby="basic-addon1">
@@ -108,9 +108,7 @@ export default {
         data: {
             name:'',
             description:'',
-            estimated_time: '',
             image: '',
-            price: ''
         },
         service_categories:[],
         success: '',
@@ -159,7 +157,7 @@ export default {
         })
     },
     checkForm: function (e) {
-        if (this.data.name && this.data.price && this.data.description) {
+        if (this.data.name && this.data.description) {
         this.update();
         return true;
         }
@@ -167,11 +165,6 @@ export default {
         this.errors = [];
         if (!this.data.name) {
         this.errors.push('Name required.');
-        return false;
-        }
-
-        if (!this.data.price) {
-        this.errors.push('Price required.');
         return false;
         }
         if (!this.data.description) {

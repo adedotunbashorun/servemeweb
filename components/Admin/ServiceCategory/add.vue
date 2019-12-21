@@ -22,7 +22,7 @@
                 <div class="form-group">
                     <select class="form-control" v-model="service_cat.category_id">
                         <option value="">-- Select Category --</option>
-                        <option v-for="category in categories" :value="category._id">{{ category.name}}</option>
+                        <option v-for="category in categories" :key="category._id" :value="category._id">{{ category.name}}</option>
                     </select>
                 </div>
                 <div class="form-group">
