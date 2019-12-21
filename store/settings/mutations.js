@@ -47,7 +47,7 @@ export const mutations = {
   },
   [ADD_SETTINGS_SUCCESS]: (state, payload) => {
     state.showLoader = false
-    state.settings.push(payload)
+    state.settings = payload.settings
   },
   [ADD_SETTINGS_FAILURE]: (state, payload) => {
     state.showLoader = false
