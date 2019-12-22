@@ -92,13 +92,10 @@ export default {
       $("#question-table").DataTable({});
     }, 2000);
   },
-  components: {
-    VueGoodTable
-  },
   methods: {
-    deleteQuestion(id) {
+    deleteSubCategory(id) {
       this.$store
-        .dispatch("deleteQuestion", [id, this.$store.state.auth.headers])
+        .dispatch("deleteSubCategory", [id, this.$store.state.auth.headers])
         .then(resp => {})
         .catch(err => console.log());
     }
