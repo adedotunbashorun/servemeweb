@@ -19,7 +19,9 @@
     "cross-env": "^5.2.0",
     "js-cookie": "^2.2.0",
     "moment": "^2.24.0",
-    "nuxt": "^2.4.0"
+    "nuxt": "^2.4.0",
+    "vue-good-table": "^2.18.1",
+    "vue-materialize-datatable": "^1.0.1"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.9.1",

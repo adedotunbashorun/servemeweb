@@ -14,7 +14,7 @@
             <div class="metric">
               <span class="icon"><i class="fa fa-download"></i></span>
               <p>
-                <span class="number">1,252</span>
+                <span class="number">{{ result.users }}</span>
                 <span class="title">Total Users</span>
               </p>
             </div>
@@ -23,7 +23,7 @@
             <div class="metric">
               <span class="icon"><i class="fa fa-shopping-bag"></i></span>
               <p>
-                <span class="number">203</span>
+                <span class="number">{{ result.vendors }}</span>
                 <span class="title">Vendors</span>
               </p>
             </div>
@@ -32,7 +32,7 @@
             <div class="metric">
               <span class="icon"><i class="fa fa-eye"></i></span>
               <p>
-                <span class="number">274,678</span>
+                <span class="number">{{ result.clients }}</span>
                 <span class="title">Client</span>
               </p>
             </div>
@@ -41,7 +41,7 @@
             <div class="metric">
               <span class="icon"><i class="fa fa-bar-chart"></i></span>
               <p>
-                <span class="number">35%</span>
+                <span class="number">{{ result.orders }}</span>
                 <span class="title">Service Provided</span>
               </p>
             </div>
@@ -56,7 +56,7 @@
         <!-- RECENT PURCHASES -->
         <div class="panel">
           <div class="panel-heading">
-            <h3 class="panel-title">Recent Purchases</h3>
+            <h3 class="panel-title">Recent Activities</h3>
             <div class="right">
               <button type="button" class="btn-toggle-collapse">
                 <i class="lnr lnr-chevron-up"></i>
@@ -66,62 +66,35 @@
               </button>
             </div>
           </div>
-          <div class="panel-body no-padding">
-            <!-- <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Order No.</th>
-                  <th>Name</th>
-                  <th>Amount</th>
-                  <th>Date &amp; Time</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><a href="#">763648</a></td>
-                  <td>Steve</td>
-                  <td>$122</td>
-                  <td>Oct 21, 2016</td>
-                  <td><span class="label label-success">COMPLETED</span></td>
-                </tr>
-                <tr>
-                  <td><a href="#">763649</a></td>
-                  <td>Amber</td>
-                  <td>$62</td>
-                  <td>Oct 21, 2016</td>
-                  <td><span class="label label-warning">PENDING</span></td>
-                </tr>
-                <tr>
-                  <td><a href="#">763650</a></td>
-                  <td>Michael</td>
-                  <td>$34</td>
-                  <td>Oct 18, 2016</td>
-                  <td><span class="label label-danger">FAILED</span></td>
-                </tr>
-                <tr>
-                  <td><a href="#">763651</a></td>
-                  <td>Roger</td>
-                  <td>$186</td>
-                  <td>Oct 17, 2016</td>
-                  <td><span class="label label-success">SUCCESS</span></td>
-                </tr>
-                <tr>
-                  <td><a href="#">763652</a></td>
-                  <td>Smith</td>
-                  <td>$362</td>
-                  <td>Oct 16, 2016</td>
-                  <td><span class="label label-success">SUCCESS</span></td>
-                </tr>
-              </tbody>
-            </table> -->
-
-            <v-data-table
-              :headers="tableHeaders"
-              :items="purchases"
-              :items-per-page="10"
-            >
-            </v-data-table>
+          <div class="" v-if="result.user_activities">
+            <vue-good-table :rows="result.activities" :columns="columns">
+              <!-- <template slot="table-row-after" slot-scope="props">
+                <td>
+                  <router-link
+                    :to="{
+                      name: 'editattendance',
+                      params: { id: props.row.id }
+                    }"
+                    class="btn btn-primary btn-xs"
+                    >Insert/Edit</router-link
+                  >
+                  <router-link
+                    :to="{
+                      name: 'viewattendance',
+                      params: { id: props.row.id }
+                    }"
+                    class="btn btn-primary btn-xs"
+                    ><i class="fa fa-eye"></i>View</router-link
+                  >
+                  <button
+                    @click="deleteAttendance(props.index)"
+                    class="btn btn-danger btn-xs"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </template> -->
+            </vue-good-table>
           </div>
           <div class="panel-footer">
             <div class="row">
@@ -152,7 +125,9 @@
               </button>
             </div>
           </div>
-          <div class="panel-body">
+          <div class="panel-body" v-if="result.user_activities">
+            <vue-good-table :rows="result.user_activities" :columns="columns">
+            </vue-good-table>
             <ul class="list-unstyled activity-list">
               <li>
                 <img
@@ -227,107 +202,22 @@
   </div>
 </template>
 <script>
+import "vue-good-table/dist/vue-good-table.css";
+import { VueGoodTable } from "vue-good-table";
+
 export default {
   props: ["user", "result", "page"],
+  components: {
+    VueGoodTable
+  },
   data() {
     return {
-      tableHeaders: [
-        { text: "Order No", value: "calories", align: "left", sortable: false },
-        { text: "Name", value: "fat" },
-        { text: "Amount", value: "carbs" },
-        { text: "Date & Time", value: "protein" },
-        { text: "Status (%)", value: "iron" }
-      ],
-      purchases: [
-        {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: "1%"
-        },
-        {
-          name: "Ice cream sandwich",
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          iron: "1%"
-        },
-        {
-          name: "Eclair",
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-          iron: "7%"
-        },
-        {
-          name: "Cupcake",
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3,
-          iron: "8%"
-        },
-        {
-          name: "Gingerbread",
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9,
-          iron: "16%"
-        },
-        {
-          name: "Jelly bean",
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0,
-          iron: "0%"
-        },
-        {
-          name: "Lollipop",
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0,
-          iron: "2%"
-        },
-        {
-          name: "Honeycomb",
-          calories: 408,
-          fat: 3.2,
-          carbs: 87,
-          protein: 6.5,
-          iron: "45%"
-        },
-        {
-          name: "Donut",
-          calories: 452,
-          fat: 25.0,
-          carbs: 51,
-          protein: 4.9,
-          iron: "22%"
-        },
-        {
-          name: "KitKat",
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7,
-          iron: "6%"
-        }
-      ],
-      totalUsers: 0,
-      totalVendors: 0,
-      totalClients: 0,
-      serviceProvided: 0
+      columns: [
+        { label: "First Name", field: "user_id.first_name", sortable: false },
+        { label: "Description", field: "description", sortable: false }
+      ]
     };
   },
   mounted() {}
-}
-
-
+};
 </script>
