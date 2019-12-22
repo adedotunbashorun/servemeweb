@@ -7,62 +7,46 @@
         <div class="panel">
           <div class="panel-heading">
             <h3 class="panel-title">Orders List</h3>
+            <select class="pull pull-right btn btn-outline-primary">
+              <option value="">-- Select Type --</option>
+            </select>
             <hr />
           </div>
           <div class="panel-body no-padding">
-            <table id="orders-table" class="table">
-              <thead class="bg-light">
-                <tr>
-                  <th>#</th>
-                  <th>Image</th>
-                  <th>Name</th>
-                  <th>Description</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(order, index) in orders" :key="index">
-                  <td>{{ index + 1 }}</td>
-                  <td>
-                    <img
-                      :src="apiUrl + '/' + order.image_url"
-                      style="width:30px;height:30px"
-                    />
-                  </td>
-                  <td>{{ order.name }}</td>
-                  <td>{{ order.description }}</td>
-                  <td>
-                    <div class="dropdown">
-                      <button
-                        class="btn btn-secondary dropdown-toggle"
-                        type="button"
-                        id="dropdownMenuButton"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        Action
-                      </button>
-                      <div
-                        class="dropdown-menu"
-                        aria-labelledby="dropdownMenuButton"
-                      >
-                        <nuxt-link
-                          class="dropdown-item"
-                          :to="{
-                            name: 'admin-order-id',
-                            params: { id: order._id }
-                          }"
-                          title="edit / view"
-                        >
-                          <i class="material-icons">edit</i></nuxt-link
-                        >
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <vue-good-table
+              :rows="orders"
+              :columns="columns"
+              :pagination-options="{
+                enabled: true,
+                perPage: 5
+              }"
+            >
+              <template slot="table-row" slot-scope="props">
+                <span v-if="props.column.field == 'num'">
+                  {{ props.row.originalIndex + 1 }}
+                </span>
+                <span v-else-if="props.column.field == 'image_url'">
+                  <img
+                    :src="apiUrl + '/' + props.row.image_url"
+                    style="width:30px;height:30px"
+                  />
+                </span>
+                <span v-else-if="props.column.field == 'action'">
+                  <nuxt-link
+                    class="btn btn-info dropdown-item"
+                    :to="{
+                      name: 'admin-order-id',
+                      params: { id: props.row._id }
+                    }"
+                    title="edit / view"
+                  >
+                    <i class="fa fa-edit">
+                      <!-- edit -->
+                    </i></nuxt-link
+                  >
+                </span>
+              </template>
+            </vue-good-table>
           </div>
         </div>
       </div>
@@ -71,19 +55,48 @@
 </template>
 <script>
 import { config } from "../../../config";
+import "vue-good-table/dist/vue-good-table.css";
+import { VueGoodTable } from "vue-good-table";
+
 export default {
   props: ["orders", "page"],
   data() {
     return {
-      apiUrl: ""
+      apiUrl: "",
+      // allOrders: [],
+      columns: [
+        { label: "#", field: "num", sortable: false },
+        { label: "Name", field: "name", sortable: false },
+        { label: "Vendor", field: "vendor", sortable: false },
+        { label: "Service Category", field: "description", sortable: false },
+        { label: "Payment Type", field: "description", sortable: false },
+        { label: "Status", field: "description", sortable: false },
+        { label: "Address", field: "description", sortable: false },
+        { label: "Action", field: "action", sortable: false }
+      ]
     };
   },
   mounted() {
     this.apiUrl = config.apiUrl;
-    setTimeout(() => {
-      $("#orders-table").DataTable({});
-    }, 2000);
   },
-  methods: {}
+  computed: {
+    allOrders() {
+      return (this.allOrders = this.orders);
+    }
+  },
+  components: {
+    VueGoodTable
+  },
+  methods: {
+    orderByType: status => {
+      this.allOrders = this.orders;
+      if (status == "All") {
+        return (this.allOrders = this.orders);
+      }
+      this.allOrders = this.allOrders.filter(order => {
+        return order.status === status;
+      });
+    }
+  }
 };
 </script>

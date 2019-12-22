@@ -15,6 +15,22 @@ const allOrders = header => {
       });
   });
 };
+
+const orderByStatusType = (data, header) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(config.apiUrl + "/api/order/" + data, {
+        headers: { Authorization: header }
+      })
+      .then(resp => {
+        resolve(resp);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
+
 const orderById = (data, header) => {
   return new Promise((resolve, reject) => {
     axios
@@ -32,5 +48,6 @@ const orderById = (data, header) => {
 
 export const Order = {
   allOrders,
-  orderById
+  orderById,
+  orderByStatusType
 };

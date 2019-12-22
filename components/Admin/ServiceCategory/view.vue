@@ -87,7 +87,7 @@ export default {
   },
   methods: {
     getServiceCat(){
-        this.$store.dispatch('SubCategoryById', [this.$nuxt._route.params.id,this.$store.state.auth.headers])
+        this.$store.dispatch('subCategoryById', [this.$nuxt._route.params.id,this.$store.state.auth.headers])
         .then((resp) => {
             return this.service_cat = resp.data.subcategory
         }).catch(err => console.log())

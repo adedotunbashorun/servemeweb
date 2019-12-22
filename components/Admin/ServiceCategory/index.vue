@@ -30,6 +30,12 @@
                 <span v-if="props.column.field == 'num'">
                   {{ props.row.originalIndex + 1 }}
                 </span>
+                <span v-else-if="props.column.field == 'image_url'">
+                  <img
+                    :src="apiUrl + '/' + props.row.image_url"
+                    style="width:30px;height:30px"
+                  />
+                </span>
                 <span v-else-if="props.column.field == 'shortmessage'">
                   {{ props.row.message.substr(0, 50) }}...
                 </span>
@@ -37,7 +43,7 @@
                   <nuxt-link
                     class="btn btn-info dropdown-item"
                     :to="{
-                      name: 'admin-class-id',
+                      name: 'admin-service_category-id',
                       params: { id: props.row._id }
                     }"
                     title="edit / view"
@@ -50,7 +56,7 @@
                   <a
                     class="dropdown-item btn btn-danger"
                     style="cursor:pointer;"
-                    @click="deleteCategory(props.row._id)"
+                    @click="deleteSubCategory(props.row._id)"
                     title="delete"
                   >
                     <i class="fa fa-trash">
@@ -86,11 +92,11 @@ export default {
       ]
     };
   },
+  components: {
+    VueGoodTable
+  },
   mounted() {
     this.apiUrl = config.apiUrl;
-    setTimeout(() => {
-      $("#question-table").DataTable({});
-    }, 2000);
   },
   methods: {
     deleteSubCategory(id) {
