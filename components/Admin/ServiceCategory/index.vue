@@ -92,11 +92,11 @@ export default {
       ]
     };
   },
-  components: {
-    VueGoodTable
-  },
   mounted() {
     this.apiUrl = config.apiUrl;
+  },
+  components: {
+    VueGoodTable
   },
   methods: {
     deleteSubCategory(id) {
