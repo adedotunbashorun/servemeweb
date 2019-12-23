@@ -15,9 +15,83 @@
           <div class="panel-heading">
             <h3 class="panel-title">View Order</h3>
             <hr />
-            <!-- <span class="text-uppercase panel-subtitle"
-              >Fill form to update class</span
-            > -->
+            <div v-if="data" class="row">
+              <!--REVIEW ORDER-->
+              <div class="col-md-4 col-lg-4 col-sm-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading text-center">
+                    <h4>Client Details</h4>
+                  </div>
+                  <div class="panel-body">
+                    <strong>Name</strong>
+                    <div class="pull-right">
+                      <span>{{
+                        data.client_id.first_name +
+                          " " +
+                          data.client_id.last_name
+                      }}</span>
+                    </div>
+                    <hr />
+                    <strong>Phone</strong>
+                    <div class="pull-right">
+                      <span>{{ data.client_id.phone }}</span>
+                    </div>
+                    <hr />
+                    <strong>Email</strong>
+                    <div class="pull-right">
+                      <span>{{ data.client_id.email }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-lg-4 col-sm-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading text-center">
+                    <h4>Order Details</h4>
+                  </div>
+                  <div class="panel-body">
+                    <strong>Payment Type</strong>
+                    <div class="pull-right">
+                      <span>{{ data.payment_type }}</span>
+                    </div>
+                    <hr />
+                    <strong>Total Amount</strong>
+                    <div class="pull-right">
+                      <span>{{ data.amount }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-lg-4 col-sm-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading text-center">
+                    <h4>Vendor Details</h4>
+                  </div>
+                  <div class="panel-body">
+                    <strong>Name</strong>
+                    <div class="pull-right">
+                      <span>{{
+                        data.vendor_id.first_name +
+                          " " +
+                          data.vendor_id.last_name
+                      }}</span>
+                    </div>
+                    <hr />
+                    <strong>Phone</strong>
+                    <div class="pull-right">
+                      <span>{{ data.vendor_id.phone }}</span>
+                    </div>
+                    <hr />
+                    <strong>Email</strong>
+                    <div class="pull-right">
+                      <span>{{ data.vendor_id.email }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--REVIEW ORDER END-->
           </div>
           <div class="panel-body"></div>
         </div>
@@ -34,11 +108,7 @@ export default {
   data() {
     return {
       errors: [],
-      data: {
-        name: "",
-        description: "",
-        image: ""
-      },
+      data: {},
       success: "",
       error: "",
       apiUrl: ""
