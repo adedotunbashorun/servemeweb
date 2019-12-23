@@ -59,7 +59,7 @@ export default {
           this.$store.state.auth.headers
         ])
         .then(resp => {
-          this.data = resp.data.class;
+          this.data = resp.data.order;
         })
         .catch(err => console.log());
     }

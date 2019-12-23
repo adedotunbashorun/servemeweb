@@ -64,6 +64,12 @@
                 <span v-if="props.column.field == 'num'">
                   {{ props.row.originalIndex + 1 }}
                 </span>
+                <span v-else-if="props.column.field == 'image_url'">
+                  <img
+                    :src="apiUrl + '/' + props.row.image_url"
+                    style="width:30px;height:30px"
+                  />
+                </span>
                 <span v-else-if="props.column.field == 'shortmessage'">
                   {{ props.row.message.substr(0, 50) }}...
                 </span>

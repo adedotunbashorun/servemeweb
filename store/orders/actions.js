@@ -47,5 +47,20 @@ export const actions = {
           reject(err);
         });
     });
+  },
+
+  orderByStatusType({ commit }, [payload, header]) {
+    commit(ALL_ORDER);
+    return new Promise((resolve, reject) => {
+      Api.Order.orderByStatusType(payload, header)
+        .then(response => {
+          commit(ALL_ORDER_SUCCESS, response.data);
+          resolve(response);
+        })
+        .catch(err => {
+          commit(ALL_ORDER_FAILURE, err);
+          reject(err);
+        });
+    });
   }
 };
