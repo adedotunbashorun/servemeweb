@@ -56,7 +56,7 @@ export default {
           .then(() => {
             Cookie.remove('jwtToken')
             Cookie.remove('user')
-            this.$router.push('/login')
+            this.$router.go('/login')
           })
           .catch(err => {
             Cookie.remove('jwtToken')
