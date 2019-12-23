@@ -7,14 +7,20 @@
         <div class="panel">
           <div class="panel-heading">
             <h3 class="panel-title">Orders List</h3>
-            <select class="pull pull-right btn btn-outline-primary">
-              <option value="">-- Select Type --</option>
-            </select>
+            <div class="col-lg-3  pull pull-right">
+              <select @change="orderByType($event)" class="form-control" v-model="type">
+                  <option value="All">All orders</option>
+                  <option value="waiting">All waiting orders</option>
+                  <option value="accepted">All accepted orders</option>
+                  <option value="started">All started orders</option>
+                  <option value="completed">All started orders</option>
+              </select>
+            </div>
             <hr />
           </div>
-          <div class="panel-body">
+          <div class="panel-body" v-if="all_orders">
             <vue-good-table
-              :rows="orders"
+              :rows="all_orders"
               :columns="columns"
               :pagination-options="{
                 enabled: true,
@@ -63,7 +69,7 @@ export default {
   data() {
     return {
       apiUrl: "",
-      // allOrders: [],
+      type: "",
       columns: [
         { label: "#", field: "num", sortable: false },
         { label: "Name", field: "name", sortable: false },
@@ -80,20 +86,21 @@ export default {
     this.apiUrl = config.apiUrl;
   },
   computed: {
-    allOrders() {
-      return (this.allOrders = this.orders);
+    all_orders() {
+      return this.orders
     }
   },
   components: {
     VueGoodTable
   },
   methods: {
-    orderByType: status => {
-      this.allOrders = this.orders;
+    orderByType: async event => {
+      let status = event.target.value;
+      this.all_orders = await this.orders;
       if (status == "All") {
-        return (this.allOrders = this.orders);
+        return (this.all_orders = await this.orders);
       }
-      this.allOrders = this.allOrders.filter(order => {
+      this.all_orders = this.all_orders.filter(order => {
         return order.status === status;
       });
     }

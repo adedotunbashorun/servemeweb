@@ -98,9 +98,6 @@ export default {
   },
   mounted() {
     this.apiUrl = config.apiUrl;
-    setTimeout(() => {
-      $("#category-table").DataTable({});
-    }, 2000);
   },
   methods: {
     deleteCategory(id) {

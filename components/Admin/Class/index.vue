@@ -94,9 +94,6 @@ export default {
   },
   mounted() {
     this.apiUrl = config.apiUrl;
-    setTimeout(() => {
-      $("#classes-table").DataTable({});
-    }, 2000);
   },
   components: {
     VueGoodTable

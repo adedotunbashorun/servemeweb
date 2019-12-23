@@ -413,9 +413,6 @@ export default {
   mounted() {
     this.getUser();
     this.allCategories();
-    setTimeout(() => {
-      $("#activity-table").DataTable({});
-    }, 2000);
   },
   methods: {
     assignServices() {

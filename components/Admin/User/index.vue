@@ -126,9 +126,6 @@ import { VueGoodTable } from "vue-good-table";
 export default {
   props: ["users", "page"],
   mounted() {
-    setTimeout(() => {
-      $("#user-table").DataTable({});
-    }, 2000);
   },
   methods: {
     deleteUser(id) {

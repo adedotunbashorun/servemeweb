@@ -119,9 +119,6 @@ export default {
   mounted(){
     this.apiUrl = config.apiUrl
     this.getCategory()
-    setTimeout(() => {
-        $('#question-table').DataTable({})
-    },2000)
   },
   components:{
       Adedotun

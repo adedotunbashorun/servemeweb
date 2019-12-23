@@ -85,9 +85,6 @@ export default {
     };
   },
   mounted() {
-    setTimeout(() => {
-      $("#supports-table").DataTable({});
-    }, 2000);
   }
 };
 </script>
