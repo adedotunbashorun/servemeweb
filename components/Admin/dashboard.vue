@@ -68,32 +68,6 @@
           </div>
           <div class="" v-if="result.user_activities">
             <vue-good-table :rows="result.activities" :columns="columns">
-              <!-- <template slot="table-row-after" slot-scope="props">
-                <td>
-                  <router-link
-                    :to="{
-                      name: 'editattendance',
-                      params: { id: props.row.id }
-                    }"
-                    class="btn btn-primary btn-xs"
-                    >Insert/Edit</router-link
-                  >
-                  <router-link
-                    :to="{
-                      name: 'viewattendance',
-                      params: { id: props.row.id }
-                    }"
-                    class="btn btn-primary btn-xs"
-                    ><i class="fa fa-eye"></i>View</router-link
-                  >
-                  <button
-                    @click="deleteAttendance(props.index)"
-                    class="btn btn-danger btn-xs"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </template> -->
             </vue-good-table>
           </div>
           <div class="panel-footer">
@@ -102,9 +76,6 @@
                 <span class="panel-note"
                   ><i class="fa fa-clock-o"></i> Last 24 hours</span
                 >
-              </div>
-              <div class="col-md-6 text-right">
-                <a href="#" class="btn btn-primary">View All Purchases</a>
               </div>
             </div>
           </div>
@@ -128,72 +99,6 @@
           <div class="panel-body" v-if="result.user_activities">
             <vue-good-table :rows="result.user_activities" :columns="columns">
             </vue-good-table>
-            <ul class="list-unstyled activity-list">
-              <li>
-                <img
-                  src="assets/img/user1.png"
-                  alt="Avatar"
-                  class="img-circle pull-left avatar"
-                />
-                <p>
-                  <a href="#">Michael</a> has achieved 80% of his completed
-                  tasks <span class="timestamp">20 minutes ago</span>
-                </p>
-              </li>
-              <li>
-                <img
-                  src="assets/img/user2.png"
-                  alt="Avatar"
-                  class="img-circle pull-left avatar"
-                />
-                <p>
-                  <a href="#">Daniel</a> has been added as a team member to
-                  project <a href="#">System Update</a>
-                  <span class="timestamp">Yesterday</span>
-                </p>
-              </li>
-              <li>
-                <img
-                  src="assets/img/user3.png"
-                  alt="Avatar"
-                  class="img-circle pull-left avatar"
-                />
-                <p>
-                  <a href="#">Martha</a> created a new heatmap view
-                  <a href="#">Landing Page</a>
-                  <span class="timestamp">2 days ago</span>
-                </p>
-              </li>
-              <li>
-                <img
-                  src="assets/img/user4.png"
-                  alt="Avatar"
-                  class="img-circle pull-left avatar"
-                />
-                <p>
-                  <a href="#">Jane</a> has completed all of the tasks
-                  <span class="timestamp">2 days ago</span>
-                </p>
-              </li>
-              <li>
-                <img
-                  src="assets/img/user5.png"
-                  alt="Avatar"
-                  class="img-circle pull-left avatar"
-                />
-                <p>
-                  <a href="#">Jason</a> started a discussion about
-                  <a href="#">Weekly Meeting</a>
-                  <span class="timestamp">3 days ago</span>
-                </p>
-              </li>
-            </ul>
-            <button
-              type="button"
-              class="btn btn-primary btn-bottom center-block"
-            >
-              Load More
-            </button>
           </div>
         </div>
         <!-- END TIMELINE -->
