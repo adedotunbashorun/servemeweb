@@ -316,46 +316,6 @@
             </div>
             <div class="tab-pane fade" id="tab-bottom-left3">
               <div class="table-responsive" v-if="supports">
-                <!-- <table id="activity-table" class="table project-table">
-                  <thead>
-                    <tr>
-                      <th>S/N</th>
-                      <th>Ticket No</th>
-                      <th>Subject</th>
-                      <th>Message</th>
-                      <th>Action</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="(support, index) in supports" :key="index">
-                      <th scope="row">
-                        {{ index + 1 }}
-                      </th>
-                      <td>
-                        {{ support.ticket_no }}
-                      </td>
-                      <td>
-                        {{ support.title }}
-                      </td>
-                      <td>
-                        {{ support.message.substr(0, 100) }}
-                      </td>
-                      <td>
-                        <nuxt-link
-                          class=""
-                          :to="{
-                            name: 'admin-support-id',
-                            params: { id: support._id }
-                          }"
-                          title="edit / view"
-                        >
-                          <i class="material-icons">edit</i></nuxt-link
-                        >
-                      </td>
-                    </tr>
-                  </tbody>
-                </table> -->
                 <vue-good-table
                   :rows="supports"
                   :columns="support"

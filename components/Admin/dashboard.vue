@@ -66,7 +66,7 @@
               </button>
             </div>
           </div>
-          <div class="" v-if="result.user_activities">
+          <div class="panel-body" v-if="result.user_activities">
             <vue-good-table :rows="result.activities" :columns="columns">
             </vue-good-table>
           </div>

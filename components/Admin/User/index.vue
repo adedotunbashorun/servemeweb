@@ -17,7 +17,7 @@
             </h3>
             <hr />
           </div>
-          <div class="panel-body no-padding">
+          <div class="panel-body">
             <vue-good-table
               :rows="users"
               :columns="columns"
@@ -40,7 +40,7 @@
                       }"
                       title="edit / view"
                     >
-                      <i class="fa fa-edit"></i> 
+                      <i class="fa fa-edit"></i>
                       <!-- Edit -->
                       </nuxt-link
                     >
@@ -52,7 +52,7 @@
                       title="activate"
                       v-if="props.row.is_active == false"
                     >
-                      <i class="fa fa-check"></i> 
+                      <i class="fa fa-check"></i>
                       <!-- Activate -->
                       </a
                     >
@@ -63,7 +63,7 @@
                       title="Deactivate"
                       v-else
                     >
-                      <i class="fa fa-times"></i> 
+                      <i class="fa fa-times"></i>
                       <!-- Deactivate -->
                       </a
                     >
@@ -78,7 +78,7 @@
                           props.row.user_type == 'vendor'
                       "
                     >
-                      <i class="fa fa-check"></i> 
+                      <i class="fa fa-check"></i>
                       <!-- Approve -->
                       </a
                     >
@@ -92,7 +92,7 @@
                           props.row.user_type == 'vendor'
                       "
                     >
-                      <i class="fa fa-times"></i> 
+                      <i class="fa fa-times"></i>
                       <!-- Decline -->
                       </a
                     >
@@ -104,7 +104,7 @@
                       @click="deleteUser(props._id)"
                       title="delete"
                     >
-                      <i class="fa fa-trash"></i> 
+                      <i class="fa fa-trash"></i>
                       <!-- Delete -->
                       </a
                     >

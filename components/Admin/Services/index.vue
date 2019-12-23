@@ -17,7 +17,7 @@
             </h3>
             <hr />
           </div>
-          <div class="panel-body no-padding">
+          <div class="panel-body">
             <vue-good-table
               :rows="categories"
               :pagination-options="{
@@ -44,7 +44,7 @@
                   <nuxt-link
                     class="btn btn-info dropdown-item"
                     :to="{
-                      name: 'admin-class-id',
+                      name: 'admin-service-id',
                       params: { id: props.row._id }
                     }"
                     title="edit / view"

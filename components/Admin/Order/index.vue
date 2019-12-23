@@ -12,7 +12,7 @@
             </select>
             <hr />
           </div>
-          <div class="panel-body no-padding">
+          <div class="panel-body">
             <vue-good-table
               :rows="orders"
               :columns="columns"

@@ -21,20 +21,11 @@
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>Help</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Basic Use</a></li>
-								<li><a href="#">Working With Data</a></li>
-								<li><a href="#">Security</a></li>
-								<li><a href="#">Troubleshooting</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img :src="apiUrl+'/'+user.profile_image" class="img-circle" alt="Avatar"> <span>{{user.first_name + ' ' + user.last_name}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
 								<li><nuxt-link :to="{name: 'admin-users-profile'}"><i class="lnr lnr-user"></i> <span>My Profile</span></nuxt-link></li>
-								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
-								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
+								<li><nuxt-link :to="{name: 'admin-supports'}"><i class="lnr lnr-envelope"></i> <span>Message</span></nuxt-link></li>
+								<li><nuxt-link :to="{name: 'admin-settings'}"><i class="lnr lnr-cog"></i> <span>Settings</span></nuxt-link></li>
 								<li><a href="#" @click="logoutUser"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
 							</ul>
 						</li>

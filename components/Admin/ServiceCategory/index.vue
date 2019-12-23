@@ -17,7 +17,7 @@
             </h3>
             <hr />
           </div>
-          <div class="panel-body no-padding">
+          <div class="panel-body">
             <vue-good-table
               :rows="service_categories"
               :pagination-options="{
