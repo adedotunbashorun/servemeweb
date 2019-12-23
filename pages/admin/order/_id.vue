@@ -1,17 +1,16 @@
 <template>
-    <ClassView :page="page"/>
+  <OrderView :page="page" />
 </template>
 <script>
-import ClassView from '~/components/Admin/Class/view.vue'
 export default {
-    layout: 'admin',
-    data(){
-      return{
-        page: 'View /Edit Class'
-      }
-    },
-    components:{
-        ClassView
-    }
-}
+  layout: "admin",
+  data() {
+    return {
+      page: "View /Edit Order"
+    };
+  },
+  components: {
+    OrderView: () => import("@/components/Admin/Order/view.vue")
+  }
+};
 </script>
