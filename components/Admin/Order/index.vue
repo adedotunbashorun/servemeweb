@@ -8,12 +8,16 @@
           <div class="panel-heading">
             <h3 class="panel-title">Orders List</h3>
             <div class="col-lg-3  pull pull-right">
-              <select @change="orderByType($event)" class="form-control" v-model="type">
-                  <option value="All">All orders</option>
-                  <option value="waiting">All waiting orders</option>
-                  <option value="accepted">All accepted orders</option>
-                  <option value="started">All started orders</option>
-                  <option value="completed">All started orders</option>
+              <select
+                @change="orderByType($event)"
+                class="form-control"
+                v-model="type"
+              >
+                <option value="All">All orders</option>
+                <option value="waiting">All waiting orders</option>
+                <option value="accepted">All accepted orders</option>
+                <option value="started">All started orders</option>
+                <option value="completed">All started orders</option>
               </select>
             </div>
             <hr />
@@ -31,11 +35,19 @@
                 <span v-if="props.column.field == 'num'">
                   {{ props.row.originalIndex + 1 }}
                 </span>
-                <span v-else-if="props.column.field == 'image_url'">
-                  <img
-                    :src="apiUrl + '/' + props.row.image_url"
-                    style="width:30px;height:30px"
-                  />
+                <span v-else-if="props.column.field == 'name'">
+                  {{
+                    props.row.client_id.first_name +
+                      " " +
+                      props.row.client_id.last_name
+                  }}
+                </span>
+                <span v-else-if="props.column.field == 'vendor'">
+                  {{
+                    props.row.vendor_id.first_name +
+                      " " +
+                      props.row.vendor_id.last_name
+                  }}
                 </span>
                 <span v-else-if="props.column.field == 'action'">
                   <nuxt-link
@@ -74,10 +86,10 @@ export default {
         { label: "#", field: "num", sortable: false },
         { label: "Name", field: "name", sortable: false },
         { label: "Vendor", field: "vendor", sortable: false },
-        { label: "Service Category", field: "description", sortable: false },
-        { label: "Payment Type", field: "description", sortable: false },
-        { label: "Status", field: "description", sortable: false },
-        { label: "Address", field: "description", sortable: false },
+        { label: "Service Category", field: "service_category_id.name", sortable: false },
+        { label: "Payment Type", field: "payment_type", sortable: false },
+        { label: "Status", field: "status", sortable: false },
+        { label: "Address", field: "address", sortable: false },
         { label: "Action", field: "action", sortable: false }
       ]
     };
@@ -87,7 +99,7 @@ export default {
   },
   computed: {
     all_orders() {
-      return this.orders
+      return this.orders;
     }
   },
   components: {
